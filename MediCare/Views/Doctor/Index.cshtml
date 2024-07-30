@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BusinessLogicLayer.DTOs.DoctorDto.DoctorDTO>
+
+<div class="container m-auto p-auto">
+    <div class="row shadow-sm">
+        <div class="text-start col-6">
+            <h2 class="text-dark">
+                MediCare Doctors
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Doctor" asp-action="Create" class="btn btn-secondary bg-body-tertiary shadow-sm">
+                <i class="bi bi-plus-circle"> </i> Add New Doctor Infos
+            </a>
+        </div>
+    </div>
+
+    <div class="row pb-3 mt-5">
+
+        @foreach (var obj in Model.OrderBy(m => m.DoctorDTO_Id))
+        {
+            <div class="row col-lg-3 col-sm-6 ms-2">
+                <div class="card mb-3" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="pic come soon..">
+                    <div class="card-body">
+                        <h5 class="card-title">@obj.Name</h5>
+                        <p class="card-text">@obj.Specialty.</p>
+                        <a href="#" class="btn btn-outline-info">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>
+@* <table>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Sedialty
+            </th>
+            <th>
+                PraxisAdress
+            </th>
+            <th>
+                Telefon
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                MedicalLicenseNumber
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>@obj.Name</td>
+                <td>@obj.Specialty</td>
+                <td>@obj.PraxisAdress</td>
+                <td>@obj.Telefon </td>
+                <td>@obj.Email</td>
+                <td>@obj.MedicalLicenseNumber  </td>
+            </tr>
+        }
+    </tbody>
+</table> *@

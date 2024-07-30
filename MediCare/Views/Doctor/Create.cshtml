@@ -1,0 +1,52 @@
+﻿@model BusinessLogicLayer.DTOs.DoctorDto.DoctorDTO
+
+<div class="row">
+    <form method="post" asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="border p-3 mt-4">
+            <div>
+                <h2 class="text-primary-emphasis">
+                    Create Doctor infos
+                </h2>
+                <hr />
+            </div>
+        </div>
+        <div class="mb-3 text-start">
+            <label asp-for="Name">Doctor Name</label>
+            <input type="text" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3 text-start">
+            <label asp-for="Specialty">Doctor Specialty</label>
+            <input type="text" asp-for="Specialty" class="form-control" />
+            <span asp-validation-for="Specialty" class="text-danger"></span>
+        </div>
+        <div class="mb-3 text-start">
+            <label asp-for="PraxisAdress" class="text-start">Doctor Praxis Adress</label>
+            <input type="text" asp-for="PraxisAdress" class="form-control" />
+            <span asp-validation-for="PraxisAdress" class="text-danger"></span>
+        </div>
+        <div class="mb-3 text-start">
+            <label asp-for="Telefon">Doctor Telefon</label>
+            <input type="text" asp-for="Telefon" class="form-control" />
+            <span asp-validation-for="Telefon" class="text-danger"></span>
+        </div>
+        <div class="mb-3 text-start">
+            <label for="email">Doctor Email</label>
+            <input type="email" name="email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3 text-start">
+            <label asp-for="MedicalLicenseNumber">Doctor Medical License Number</label>
+            <input type="text" asp-for="MedicalLicenseNumber" class="form-control" />
+            <span asp-validation-for="MedicalLicenseNumber" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary form-control">Create</button>
+        <a asp-controller="Doctor" asp-action="Index" class="btn btn-outline-secondary form-control">Back</a>
+    </form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
