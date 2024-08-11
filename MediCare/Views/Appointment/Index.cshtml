@@ -17,13 +17,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th>IsFirstVisit</th>
-                <th>Reason</th>
+                <th>Is First Visit</th>
+                <th>Reson of Visit</th>
                 <th>Doctor</th>
                 <th>Patient</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="border border-2 shadow">
             @if (Model != null)
             {
                 foreach (var appointment in Model)
@@ -38,9 +38,8 @@
                             {
                                 <span class="badge bg-secondary">Follow-up</span>
                             }
-
                         </td>
-                        <td>@(appointment.Reason ?? "N/A")</td>
+                        <td>@(!string.IsNullOrWhiteSpace(appointment.Reason) ? appointment.Reason : "N/A")</td>
                         <td>@(appointment.Doctor?.Name ?? "No Doctor Assigned")</td>
                         <td>@(appointment.Patient?.Name ?? "No Patient Assigned")</td>
                     </tr>

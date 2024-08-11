@@ -19,12 +19,12 @@
         @foreach (var obj in Model.OrderBy(m => m.DoctorDTO_Id))
         {
             <div class="row col-lg-3 col-sm-6 ms-2">
-                <div class="card mb-3" style="width: 18rem;">
+                <div class="card mb-3 shadow border-warning-subtle" style="width: 18rem;">
                     <img src="..." class="card-img-top" alt="pic come soon..">
                     <div class="card-body">
                         <h4 class="card-title">@obj.Name</h4>
                         <p class="card-text">@obj.Specialty.</p>
-                        <a href="#" class="btn btn-outline-info">Details</a>
+                        <a asp-controller="Doctor" asp-action="Details" asp-route-id="@obj.DoctorDTO_Id" class="btn btn-outline-info">Details</a>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ namespace DomainLayer.Entities.Appointment_Model
         [Display(Name = "Reason of the visit")]
         public string? Reason { get; set; }
         [Required]
-        public bool IsFirstVisit { get; set; }
+        public bool IsFirstVisit { get; set; } 
 
         [Required]
         [Display(Name = "Patient Id")]

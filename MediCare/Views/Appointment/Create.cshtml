@@ -4,6 +4,16 @@
     <div class="col-md-4">
         <form asp-action="Create" method="post">
             <div class="form-group mt-3">
+                <div class="form-check">
+                    <input asp-for="IsFirstVisit" class="form-check-input" type="checkbox" />
+                    <label asp-for="IsFirstVisit" class="form-check-label"></label>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Reason" class="form-label"></label>
+                <input asp-for="Reason" class="form-control" />
+            </div>
+            <div class="form-group mt-3">
                 <label asp-for="Doctor_Id" class="form-label"></label>
                 <select asp-for="Doctor_Id" class="form-control" asp-items="Model.Doctors">
                     <option value="">-- Select a Doctor --</option>
@@ -24,3 +34,8 @@
         </form>
     </div>
 </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

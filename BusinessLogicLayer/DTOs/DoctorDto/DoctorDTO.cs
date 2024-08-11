@@ -5,7 +5,7 @@ namespace BusinessLogicLayer.DTOs.DoctorDto
 {
     public class DoctorDTO
     {
-        public Guid DoctorDTO_Id { get; set; }
+        public Guid DoctorDTO_Id { get; set; } = Guid.NewGuid();
 
         [Required]
         [MaxLength(50)]

@@ -40,7 +40,7 @@ namespace MediCare.Controllers.Doc_Controller
         // POST: DoctorController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id, Name, Specialty, PraxisAdress, " +
+        public async Task<IActionResult> Create([Bind("Name, Specialty, PraxisAdress, " +
             "Telefon, Email, MedicalLicenseNumber")] DoctorDTO doctorDTO)
         {
             try

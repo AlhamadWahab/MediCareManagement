@@ -7,7 +7,7 @@ namespace BusinessLogicLayer.DTOs.AppointmentDto
 {
     public class AppointmentDTO
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [StringLength(200)]
         [Display(Name = "Reason of the visit")]

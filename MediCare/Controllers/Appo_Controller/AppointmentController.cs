@@ -76,7 +76,7 @@ namespace MediCare.Controllers.Appo_Controller
         public async Task<IActionResult> Create(DP_AppVMDTO dP_App)
         {
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 IEnumerable<Doctor> doctors = await _repository.DoctorService.GetAllAsync();
                 IEnumerable<Patient> patients = await _repository.PatientService.GetAllAsync();
@@ -108,7 +108,9 @@ namespace MediCare.Controllers.Appo_Controller
                     DoctorId = dP_App.Doctor_Id,
                     PatientId = dP_App.Patient_Id,
                     Doctor = doctor,
-                    Patient = patient
+                    Patient = patient,
+                    IsFirstVisit = dP_App.IsFirstVisit,
+                    Reason = dP_App.Reason
                 };
                 await _repository.AppointmentService.AddAsync(appointment);
                 return RedirectToAction(nameof(Index));
