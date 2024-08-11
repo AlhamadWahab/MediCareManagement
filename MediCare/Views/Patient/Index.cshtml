@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BusinessLogicLayer.DTOs.PatientDto.PatientDTO>
+
+<div class="container m-auto p-auto">
+    <div class="row shadow-sm">
+        <div class="text-start col-6">
+            <h2 class="text-dark"> 
+                MediCare Patients
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Patient" asp-action="Create" class="btn btn-secondary bg-body-tertiary shadow-sm">
+                <i class="bi bi-plus-circle"></i> Add New Patient Infos
+            </a>
+        </div>
+    </div>
+
+    <div class="row pb-3 mt-5">
+        @foreach(var obj in Model.OrderBy(p => p.PatientDTO_Id))
+        {
+            <div class="row col-lg-3 col-sm-6 ms-2">
+                <div class="card mb-3" style="width: 18rem;">
+                    <div class="card-body"> 
+                        <h4 class="card-title">@obj.Name</h4>
+                        <h5 class="card-title">@obj.InsuranceProvider</h5>
+                        <p class="card-text">@obj.Diagnoses</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

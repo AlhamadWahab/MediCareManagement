@@ -27,8 +27,25 @@
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-secondary shadow text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
+                      @*   <li class="nav-item">
                             <a class="nav-link btn btn-outline-secondary shadow text-dark" asp-area="" asp-controller="Doctor" asp-action="Index">Doctor</a>
+                        </li> *@
+                    </ul>
+                </div>
+                <div class="dropdown shadow text-dark" id="drop">
+                    <a class=" btn btn-outline-secondary text-dark dropdown-toggle border-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Content Management
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Doctor" asp-action="Index">Doctor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Patient" asp-action="Index">Patient</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Appointment" asp-action="Index">Appointment</a>
                         </li>
                     </ul>
                 </div>

@@ -15,7 +15,7 @@ namespace MediCare.Controllers.Doc_Controller
         public async Task<IActionResult> Index()
         {
             IEnumerable<Doctor> doctors = await _repository.DoctorService.GetAllAsync();
-            IEnumerable<DoctorDTO> doctorDTOs = _mapper.Map<List<DoctorDTO>>(doctors);
+            IEnumerable<DoctorDTO> doctorDTOs = _mapper.Map<IEnumerable<DoctorDTO>>(doctors);
             return View(doctorDTOs);
         }
 
@@ -32,7 +32,7 @@ namespace MediCare.Controllers.Doc_Controller
         }
 
         // GET: DoctorController/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -45,13 +45,14 @@ namespace MediCare.Controllers.Doc_Controller
         {
             try
             {
-                if (!IsValidName(doctorDTO.Name??""))
+                if (!IsValidName(doctorDTO.Name ?? ""))
                 {
                     ModelState.AddModelError("Name", "The Name field should only contain alphabetic characters.");
                     return View(doctorDTO);
                 }
                 if (ModelState.IsValid)
-                {        
+                {
+
                     Doctor doctor = _mapper.Map<Doctor>(doctorDTO);
                     await _repository.DoctorService.AddAsync(doctor);
                     TempData["succes"] = "Doctor Infos that you added, they have been created successfully.";
@@ -79,8 +80,8 @@ namespace MediCare.Controllers.Doc_Controller
         // POST: DoctorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id, Name, Specialty, PraxisAdress," +
-            " Telefon, Email, MedicalLicenseNumber")] DoctorDTO doctorDTO)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id, Name, Specialty, PraxisAdress, " +
+            "Telefon, Email, MedicalLicenseNumber")] DoctorDTO doctorDTO)
         {
             try
             {

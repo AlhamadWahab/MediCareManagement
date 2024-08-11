@@ -18,7 +18,7 @@ namespace DomainLayer.Entities.Patient_Model
         public string? Address { get; set; }
         [Required]
         [Phone]
-        public string Telefon { get; set; } = string.Empty;
+        public string? Telefon { get; set; } 
 
         public string? Mobile { get; set; }
 
@@ -30,8 +30,6 @@ namespace DomainLayer.Entities.Patient_Model
         [Required]
         [MaxLength(50)]
         public string? InsuranceProvider { get; set; }
-        public ICollection<DoctorPatient> DoctorPatients { get; set; }
-            = new List<DoctorPatient>();
         public ICollection<Appointment> Appointments { get; set; }
             = new List<Appointment>();
     }

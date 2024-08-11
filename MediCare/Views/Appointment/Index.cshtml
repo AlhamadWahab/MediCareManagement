@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BusinessLogicLayer.ViewModelsDTO.DP_AppVMDTO>
+
+<div class="container m-auto p-auto">
+    <div class="row shadow-sm">
+        <div class="text-start col-6">
+            <h2 class="text-dark">
+                MediCare Appointment
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Appointment" asp-action="Create" class="btn btn-secondary bg-body-tertiary shadow-sm">
+                <i class="bi bi-plus-circle"> </i> Add New Appointment Infos
+            </a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IsFirstVisit</th>
+                <th>Reason</th>
+                <th>Doctor</th>
+                <th>Patient</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var appointment in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (appointment.IsFirstVisit)
+                            {
+                                <span class="badge bg-success">First Visit</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Follow-up</span>
+                            }
+
+                        </td>
+                        <td>@(appointment.Reason ?? "N/A")</td>
+                        <td>@(appointment.Doctor?.Name ?? "No Doctor Assigned")</td>
+                        <td>@(appointment.Patient?.Name ?? "No Patient Assigned")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">No appointments found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -17,7 +17,7 @@ namespace BusinessLogicLayer.DTOs.PatientDto
         public string? Address { get; set; }
         [Required]
         [Phone]
-        public string Telefon { get; set; } = string.Empty;
+        public string? Telefon { get; set; }
 
         public string? Mobile { get; set; }
 

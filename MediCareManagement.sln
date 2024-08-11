@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediCare", "MediCare\MediCare.csproj", "{3CEB48F4-EC19-477E-BF39-2D69E6FF230A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediCare", "MediCare\MediCare.csproj", "{3CEB48F4-EC19-477E-BF39-2D69E6FF230A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MediCare Domain Layer", "MediCare Domain Layer", "{BFFB7B0C-C853-4AE4-95A0-10F3653D3BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainLayer", "DomainLayer\DomainLayer.csproj", "{E555DC16-E2E3-49B4-ACBE-B4EB23101CDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainLayer", "DomainLayer\DomainLayer.csproj", "{E555DC16-E2E3-49B4-ACBE-B4EB23101CDA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MediCare Business Logic Layer", "MediCare Business Logic Layer", "{B744F9A9-8BD5-4723-8C31-12F1D61790F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{65917348-D932-4797-B52E-7922DD737A31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{65917348-D932-4797-B52E-7922DD737A31}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MediCare Infrastructure Layer", "MediCare Infrastructure Layer", "{373F8E08-4C11-4AFC-969E-C6F3628210B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureLayer", "InfrastructureLayer\InfrastructureLayer.csproj", "{F199D716-0E56-4ADA-A8B5-C6D6E79D9D7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureLayer", "InfrastructureLayer\InfrastructureLayer.csproj", "{F199D716-0E56-4ADA-A8B5-C6D6E79D9D7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
