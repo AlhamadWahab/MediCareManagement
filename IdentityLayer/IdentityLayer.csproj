@@ -1,0 +1,227 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Lockout.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Login.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Logout.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\Email.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\Index.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\Register.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\ResendEmailConfirmation.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\ResetPassword.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
+    <None Remove="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+    <None Remove="Areas\Identity\Pages\Error.cshtml" />
+    <None Remove="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
+    <None Remove="Areas\Identity\Pages\_ViewImports.cshtml" />
+    <None Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\Identity\Pages\Account\AccessDenied.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\ConfirmEmail.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\ExternalLogin.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\ForgotPassword.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Lockout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Login.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\LoginWith2fa.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Logout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\Email.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\_Layout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\Register.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\ResendEmailConfirmation.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\ResetPassword.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\_StatusMessage.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Account\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\Error.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Areas\Identity\Pages\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+  </ItemGroup>
+
+</Project>

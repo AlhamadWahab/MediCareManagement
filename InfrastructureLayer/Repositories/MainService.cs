@@ -35,12 +35,7 @@ namespace InfrastructureLayer.Repositories
 
         public async Task<T> GetByIdAsync(Guid id)
         {
-            T? entity = await _MediDb.Set<T>().FindAsync(id);
-            if (entity == null)
-            {
-                throw new ArgumentException($"Entity with ID {id} not found", nameof(id));
-            }
-            return entity;
+            return await _MediDb.Set<T>().FindAsync(id);
         }
 
         public async Task<T> UpdateAsync(Guid id, T entity)

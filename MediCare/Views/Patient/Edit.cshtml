@@ -1,0 +1,48 @@
+﻿@model BusinessLogicLayer.DTOs.PatientDto.PatientDTO
+
+<div class="container m-auto p-auto">
+    <div class="row shadow-sm">
+        <div class="text-start col-6">
+            <h2 class="text-dark">
+                Edit Doctor Information
+            </h2>
+        </div>
+    </div>
+
+    <form asp-controller="Doctor" asp-action="Edit" method="post" class="mt-4" style="text-align: start;">
+        <div class="form-group">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Diagnoses" class="form-label"></label>
+            <input asp-for="Diagnoses" class="form-control" />
+            <span asp-validation-for="Diagnoses" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="InsuranceProvider" class="form-label"></label>
+            <input asp-for="InsuranceProvider" class="form-control" />
+            <span asp-validation-for="InsuranceProvider" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Telefon" class="form-label"></label>
+            <input asp-for="Telefon" class="form-control" />
+            <span asp-validation-for="Telefon" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="form-label"></label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

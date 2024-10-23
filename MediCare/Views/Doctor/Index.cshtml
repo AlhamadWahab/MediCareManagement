@@ -16,57 +16,20 @@
 
     <div class="row pb-3 mt-5">
 
-        @foreach (var obj in Model.OrderBy(m => m.DoctorDTO_Id))
+        @foreach (var obj in Model.OrderBy(m => m.Id))
         {
             <div class="row col-lg-3 col-sm-6 ms-2">
-                <div class="card mb-3 shadow border-warning-subtle" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="pic come soon..">
+                <div class="card mb-3 shadow border-warning-subtle" style="width: 18rem; border-radius: 9px">
+                    <img style="border-radius: 17px;  width: 230px; height: 190px;" src="@obj.ProfilePicture" class="card-img-top mt-2 mb-2" alt="pic come soon.." />
                     <div class="card-body">
                         <h4 class="card-title">@obj.Name</h4>
                         <p class="card-text">@obj.Specialty.</p>
-                        <a asp-controller="Doctor" asp-action="Details" asp-route-id="@obj.DoctorDTO_Id" class="btn btn-outline-info">Details</a>
+                        <a asp-controller="Doctor" asp-action="Details" asp-route-id="@obj.Id" class="btn btn-outline-info rounded-5">Details</a>
+                        <a asp-controller="Doctor" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger rounded-5">Delete</a>
+                        <a asp-controller="Doctor" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-warning rounded-5">Edit</a>
                     </div>
                 </div>
             </div>
         }
-
     </div>
-
 </div>
-@* <table>
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Sedialty
-            </th>
-            <th>
-                PraxisAdress
-            </th>
-            <th>
-                Telefon
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                MedicalLicenseNumber
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var obj in Model)
-        {
-            <tr>
-                <td>@obj.Name</td>
-                <td>@obj.Specialty</td>
-                <td>@obj.PraxisAdress</td>
-                <td>@obj.Telefon </td>
-                <td>@obj.Email</td>
-                <td>@obj.MedicalLicenseNumber  </td>
-            </tr>
-        }
-    </tbody>
-</table> *@

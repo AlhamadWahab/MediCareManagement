@@ -1,8 +1,217 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    .home-pic {
+        max-width: 100%;
+        height: auto;
+        background-size: cover;
+        background-repeat: no-repeat;
+       /*  border-radius: 40px; */
+    }
+
+    .LogoTitle {
+        color: maroon;
+    }
+
+    .news-ticker {
+        width: 70%;
+        margin: 0 auto; /* Center the ticker */
+        overflow: hidden;
+        background-color: rgb(0,0,0,0);
+        /* border: 1px solid #ddd; */
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .news-items {
+        display: inline-block;
+        white-space: nowrap;
+        animation: scroll-left 15s linear infinite;
+    }
+
+    .news-span {
+        padding: 0 10px;
+        display: inline-block;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .card, .card-body {
+        border-radius: 30px;
+    }
+
+</style>
+@section Scripts {
+    <script>
+        window.onload = function () {
+            const ticker = document.querySelector('.news-items');
+            let tickerWidth = ticker.scrollWidth;
+
+            function scrollNews() {
+                let duration = window.innerWidth <= 600 ? 80 : 40;
+                ticker.style.transform = `translateX(-${tickerWidth}px)`;
+                ticker.style.transition = `transform ${duration}s linear`;
+
+                ticker.addEventListener('transitionend', () => {
+                    ticker.style.transition = 'none';
+                    ticker.style.transform = 'translateX(100%)';
+                    setTimeout(scrollNews, 10);
+                });
+            }
+            scrollNews();
+        }
+    </script>
+}
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to <span class="LogoTitle">MediCare</span></h1><br />
+    <div>
+        <div class="news-ticker">
+            <div class="news-items">
+                <span class="news-span fw-bold">
+                    Herzlich willcomen in <span style="color: maroon">MEDICARE</span>, wir arbeiten rund um die Uhr, alle <span style="color: darkgreen" class="font-monospace"> <q>DOCTORS</q></span> können wohl ihre Termine ANSCHAUEN.
+                </span>
+                <span class="news-span fw-bold">
+                    Bitte beachten Sie drauf, dass nur wer eine <span style="color: darkred" class="font-monospace "> <q>ROLLE</q></span> hat, kann wohl seine Termine BEARBEITEN.
+                </span>
+                <span class="news-span fw-bold">
+                    Bei <span style="color: darkred" class="font-monospace "> <q>NOTFALL</q></span> 0707 anrufen.
+                </span>
+                <span class="news-span fw-bold">
+                    Welcome to <span style="color: maroon">MEDICARE</span>, We work around the clock, all <span style="color: darkgreen" class="font-monospace"> <q>DOCTORS</q></span> can view their appointments.
+                </span>
+                <span class="news-span fw-bold">
+                    Please note that only those who have a <span style="color: darkred" class="font-monospace "> <q>ROLE</q></span> can edit their appointments.
+                </span>
+                <span class="news-span fw-bold">
+                    Please in case of <span style="color: darkred" class="font-monospace "> <q>EMERGENCY</q></span> call 0707.
+                </span>
+            </div>
+        </div>
+        <div>
+            <img class="home-pic m-2 shadow" src="https://www.uchealthplans.com/sites/uc/files/inline-images/UC_PPO_Site_WYNTK-image-tile-011222.gif" alt="home pic" />
+            @* <img class="home-pic m-2 shadow" src="https://formartecmc.com/wp-content/uploads/2023/04/Paciente-8.jpg" alt="home pic" /> *@
+            @* <img class="home-pic m-2 shadow" src="https://newprimarycare.com/wp-content/uploads/2022/04/Physician-with-her-laptop-open-speaking-with-patient.jpg" alt="alternative pic" /> *@
+        </div>
+        @* Adminstrators Section *@
+        <section id="team" class="section-padding m-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-header text-center pb5">
+                        <h2>Medi<span style="color: orange">Care</span> <span style="color: maroon">Administators</span></h2>
+                        <p>MediCare Administrators are dedicated professionals committed to ensuring the highest standards of healthcare management. 
+                            They oversee the daily operations of medical facilities, coordinate patient care, and implement policies to improve service delivery. 
+                            Their expertise in healthcare administration ensures that MediCare remains a trusted provider of quality healthcare services, fostering a supportive 
+                            environment for both patients and medical staff.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12- col-md-6 col-lg-3  my-2">
+                    <div class="card text-center">
+                        <div class="card-body bg-body-secondary team">
+                            <img src="https://leman-clinic.ch/wp-content/uploads/2018/11/02.jpg" alt="" class="img-fluid rounded-circle shadow">
+                            <h3 class="card-title py-2" style="color: maroon">Nicolie</h3>
+                            <p class="card-text">a dedicated neurologist with years of experience in nerve health. She is known for her commitment to improving her patients' neurological well-being.</p>
+                            <p class="socials">
+                                <a href="https://twitter.com/"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                                <a href="https://www.facebook.com/"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                                <a href="https://www.instagram.com/"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                                <a href="https://de.linkedin.com/"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                                <a href="https://www.tiktok.com/de-DE/"><i class="bi bi-tiktok text-dark mx-1"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12- col-md-6 col-lg-3  my-2">
+                    <div class="card text-center">
+                        <div class="card-body bg-body-secondary team">
+                            <img src="https://img.freepik.com/free-photo/bearded-doctor-glasses_23-2147896187.jpg" alt="" class="img-fluid rounded-circle shadow">
+                            <h3 class="card-title py-2" style="color: maroon">Cai</h3>
+                            <p class="card-text">a dedicated ophthalmologist with 30 years of experience in eye health. He is one of the 10 best eye doctors known for his precise approach and overall eye care.</p>
+                            <p class="socials">
+                                <a href="https://twitter.com/"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                                <a href="https://www.facebook.com/"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                                <a href="https://www.instagram.com/"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                                <a href="https://de.linkedin.com/"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                                <a href="https://www.tiktok.com/de-DE/"><i class="bi bi-tiktok text-dark mx-1"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12- col-md-6 col-lg-3  my-2">
+                    <div class="card text-center">
+                        <div class="card-body bg-body-secondary team">
+                            <img src="https://img.freepik.com/premium-photo/photo-woman-doctor-with-smile-face-generative-ai_911330-1700.jpg" alt="" class="img-fluid rounded-circle shadow">
+                            <h3 class="card-title py-2" style="color: maroon">Sascha</h3>
+                            <p class="card-text">a dedicated dermatologist with years of experience in skin health. He is known for his meticulous approach and commitment to providing the best care for his patients.</p>
+                            <p class="socials">
+                                <a href="https://twitter.com/"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                                <a href="https://www.facebook.com/"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                                <a href="https://www.instagram.com/"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                                <a href="https://de.linkedin.com/"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                                <a href="https://www.tiktok.com/de-DE/"><i class="bi bi-tiktok text-dark mx-1"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12- col-md-6 col-lg-3 my-2">
+                    <div class="card text-center">
+                        <div class="card-body bg-body-secondary team">
+                            <img src="https://img.freepik.com/free-photo/female-doctor-hospital-with-stethoscope_23-2148827774.jpg" alt="" class="img-fluid rounded-circle shadow">
+                            <h3 class="card-title py-2" style="color: maroon">Sandra</h3>
+                            <p class="card-text">a dedicated cardiologist with years of experience in heart health. She is known for her compassionate approach and commitment to improving patient outcomes.</p>
+                            <p class="socials">
+                                <a href="https://twitter.com/"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                                <a href="https://www.facebook.com/"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                                <a href="https://www.instagram.com/"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                                <a href="https://de.linkedin.com/"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                                <a href="https://www.tiktok.com/de-DE/"><i class="bi bi-tiktok text-dark mx-1"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @* Contact Section *@
+        <section id="contact" class="contact section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-header text-center pb5">
+                            <h2>Contact <span style="color: orange">us</span></h2>
+                            <p>If you have any questions or need further information, please don't hesitate to reach out to us:</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0">
+                <div class="col-md-12 p-0 pt-4 pb-4">
+                    <form action="#" class="bg-light p-4 m-auto">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" required placeholder="your full name">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" required placeholder="your email">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <textarea rows="7" required class="form-control" placeholder="your query"></textarea>
+                                </div>
+                            </div>
+                            <button class="btn btn-warning btn-ms btn-block mt-3">
+                                send now
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>

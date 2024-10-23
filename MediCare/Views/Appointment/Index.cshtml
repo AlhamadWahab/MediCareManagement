@@ -21,6 +21,7 @@
                 <th>Reson of Visit</th>
                 <th>Doctor</th>
                 <th>Patient</th>
+                <th>operation</th>
             </tr>
         </thead>
         <tbody class="border border-2 shadow">
@@ -42,6 +43,11 @@
                         <td>@(!string.IsNullOrWhiteSpace(appointment.Reason) ? appointment.Reason : "N/A")</td>
                         <td>@(appointment.Doctor?.Name ?? "No Doctor Assigned")</td>
                         <td>@(appointment.Patient?.Name ?? "No Patient Assigned")</td>
+                        <td>
+                            <a asp-controller="Appointment" asp-action="Edit" asp-route-id="@appointment.Id" class="btn btn-outline-info">Edit</a>
+                            <a asp-controller="Appointment" asp-action="Delete" asp-route-id="@appointment.Id" class="btn btn-outline-danger">Delete</a>
+                        </td>
+
                     </tr>
                 }
             }

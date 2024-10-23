@@ -10,7 +10,7 @@ namespace InfrastructureLayer.Repositories
     {
         public MainRepository(MediCareDbContext dbContext)
         {
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _dbContext = dbContext;
             DoctorService = new MainService<Doctor>(_dbContext);
             PatientService = new MainService<Patient>(_dbContext);
             AppointmentService = new MainService<Appointment>(_dbContext);

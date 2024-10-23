@@ -5,7 +5,7 @@ namespace BusinessLogicLayer.DTOs.PatientDto
 {
     public class PatientDTO
     {
-        public Guid PatientDTO_Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
         [Required]
         [MaxLength(50)]
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "The Name field should only contain alphabetic characters.")]
@@ -17,8 +17,6 @@ namespace BusinessLogicLayer.DTOs.PatientDto
         [Required]
         [Phone]
         public string? Telefon { get; set; }
-
-        public string? Mobile { get; set; }
 
         [EmailAddress]
         public string? Email { get; set; }

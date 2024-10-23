@@ -7,6 +7,7 @@ namespace DomainLayer.ViewModels
 {
     public class DP_AppVM
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
         [StringLength(200)]
         [Display(Name = "Reason of the visit")]
         public string? Reason { get; set; }

@@ -6,16 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MediCare.Controllers.Doc_Controller
 {
-    public class DoctorController(IRepository repository, IMapper mapper) : Controller
+    public class DoctorController(IRepository repository, IMapper mapper, IWebHostEnvironment webHostEnvironment) : Controller
     {
         private readonly IRepository _repository = repository;
         private readonly IMapper _mapper = mapper;
+        private readonly IWebHostEnvironment _webHostEnvironment = webHostEnvironment;
 
         // GET: DoctorController
         public async Task<IActionResult> Index()
         {
             IEnumerable<Doctor> doctors = await _repository.DoctorService.GetAllAsync();
             IEnumerable<DoctorDTO> doctorDTOs = _mapper.Map<IEnumerable<DoctorDTO>>(doctors);
+            _repository.CommitAsync();
             return View(doctorDTOs);
         }
 
@@ -28,6 +30,7 @@ namespace MediCare.Controllers.Doc_Controller
             {
                 return NotFound();
             }
+            _repository.CommitAsync();
             return View(doctorDTO);
         }
 
@@ -41,20 +44,33 @@ namespace MediCare.Controllers.Doc_Controller
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name, Specialty, PraxisAdress, " +
-            "Telefon, Email, MedicalLicenseNumber")] DoctorDTO doctorDTO)
+            "Telefon, Email, MedicalLicenseNumber")] DoctorDTO doctorDTO, IFormFile file)
         {
             try
             {
                 if (!IsValidName(doctorDTO.Name ?? ""))
                 {
                     ModelState.AddModelError("Name", "The Name field should only contain alphabetic characters.");
+                    _repository.CommitAsync();
                     return View(doctorDTO);
                 }
                 if (ModelState.IsValid)
                 {
+                    string wwwRootPath = _webHostEnvironment.WebRootPath;
+                    if (file != null)
+                    {
+                        string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                        string drImgPath = Path.Combine(wwwRootPath, @"images\Doctor");
+                        using (var fileStream = new FileStream(Path.Combine(drImgPath, fileName), FileMode.Create))
+                        {
+                            file.CopyTo(fileStream);
+                        }
+                        doctorDTO.ProfilePicture = @"\images\Doctor\" + fileName;
+                    }
 
                     Doctor doctor = _mapper.Map<Doctor>(doctorDTO);
                     await _repository.DoctorService.AddAsync(doctor);
+                    _repository.CommitAsync();
                     TempData["succes"] = "Doctor Infos that you added, they have been created successfully.";
                 }
                 return RedirectToAction(nameof(Index));
@@ -74,6 +90,7 @@ namespace MediCare.Controllers.Doc_Controller
                 return NotFound();
             }
             DoctorDTO doctorDTO = _mapper.Map<DoctorDTO>(doctor);
+            _repository.CommitAsync();
             return View(doctorDTO);
         }
 
@@ -81,7 +98,7 @@ namespace MediCare.Controllers.Doc_Controller
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id, Name, Specialty, PraxisAdress, " +
-            "Telefon, Email, MedicalLicenseNumber")] DoctorDTO doctorDTO)
+            "Telefon, Email, MedicalLicenseNumber, ProfilePicture")] DoctorDTO doctorDTO)
         {
             try
             {
@@ -89,6 +106,7 @@ namespace MediCare.Controllers.Doc_Controller
                 {
                     Doctor doctor = _mapper.Map<Doctor>(doctorDTO);
                     await _repository.DoctorService.UpdateAsync(id, doctor);
+                    _repository.CommitAsync();
                     TempData["succes"] = "Doctor Infos that you updated, they have been updated successfully.";
                 }
                 return RedirectToAction(nameof(Index));
@@ -108,6 +126,7 @@ namespace MediCare.Controllers.Doc_Controller
                 return NotFound();
             }
             DoctorDTO doctorDTO = _mapper.Map<DoctorDTO>(doctor);
+            _repository.CommitAsync();
             return View(doctorDTO);
         }
 
@@ -126,6 +145,7 @@ namespace MediCare.Controllers.Doc_Controller
                         return NotFound();
                     }
                     await _repository.DoctorService.DeleteByIdAsync(id);
+                    _repository.CommitAsync();
                     TempData["succes"] = "Doctor Infos that you deleted, they have been deleted successfully.";
                 }
                 return RedirectToAction(nameof(Index));
@@ -135,6 +155,30 @@ namespace MediCare.Controllers.Doc_Controller
                 return View(ex.Message);
             }
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> ImageSet(DoctorDTO doctorDTO, IFormFile file)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        string wwwRootPath = _webHostEnvironment.WebRootPath;
+        //        if (file != null)
+        //        {
+        //            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+        //            string drImgPath = Path.Combine(wwwRootPath, @"images\Doctor");
+        //            using (var fileStream = new FileStream(Path.Combine(drImgPath, fileName), FileMode.Create))
+        //            {
+        //                file.CopyTo(fileStream);
+        //            }
+        //            doctorDTO.ProfilePicture = @"\images\Doctor" + fileName;
+        //        }
+        //        Doctor doctor = _mapper.Map<Doctor>(doctorDTO);
+        //        await _repository.DoctorService.AddAsync(doctor);
+        //        _repository.CommitAsync();
+        //        TempData["succes"] = "Doctor Image that you added, they have been created successfully.";
+        //    }
+        //    return RedirectToAction(nameof(Index));
+        //}
         private bool IsValidName(string name)
         {
             // Check if the name contains only alphabetic characters

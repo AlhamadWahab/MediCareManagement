@@ -1,0 +1,65 @@
+﻿@model BusinessLogicLayer.DTOs.DoctorDto.DoctorDTO
+
+<div class="container m-auto p-auto">
+    <div class="row shadow-sm">
+        <div class="text-start col-6">
+            <h2 class="text-dark">
+                Delete Doctor Information
+            </h2>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Doctor</h4>
+            <hr />
+            <dl class="row text-start">
+                <dt class="col-sm-2 " style="text-align: start;">
+                    Name
+                </dt>
+                <dd class="col-sm-10">
+                    @Model.Name
+                </dd>
+                <dt class="col-sm-2">
+                    Specialty
+                </dt>
+                <dd class="col-sm-10">
+                    @Model.Specialty
+                </dd>
+                <dt class="col-sm-2">
+                    Praxis Address
+                </dt>
+                <dd class="col-sm-10">
+                    @Model.PraxisAdress
+                </dd>
+                <dt class="col-sm-2">
+                    Telefon
+                </dt>
+                <dd class="col-sm-10">
+                    @Model.Telefon
+                </dd>
+                <dt class="col-sm-2">
+                    Email
+                </dt>
+                <dd class="col-sm-10">
+                    @Model.Email
+                </dd>
+                <dt class="col-sm-2">
+                    Medical License Number
+                </dt>
+                <dd class="col-sm-10">
+                    @Model.MedicalLicenseNumber
+                </dd>
+            </dl>
+
+            <form asp-action="DeleteConfirmed" method="post" style="text-align: start;">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group mt-3">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

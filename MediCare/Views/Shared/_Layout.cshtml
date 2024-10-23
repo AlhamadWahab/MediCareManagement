@@ -27,30 +27,30 @@
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-secondary shadow text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                      @*   <li class="nav-item">
-                            <a class="nav-link btn btn-outline-secondary shadow text-dark" asp-area="" asp-controller="Doctor" asp-action="Index">Doctor</a>
-                        </li> *@
-                    </ul>
-                </div>
-                <div class="dropdown shadow text-dark" id="drop">
-                    <a class=" btn btn-outline-secondary text-dark dropdown-toggle border-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Content Management
-                    </a>
+                        <div class="dropdown shadow text-dark" id="drop">
+                            <a class=" btn btn-outline-secondary text-dark dropdown-toggle border-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Content Management
+                            </a>
 
-                    <ul class="dropdown-menu">
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Doctor" asp-action="Index">Doctor</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Patient" asp-action="Index">Patient</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Appointment" asp-action="Index">Appointment</a>
-                        </li>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Doctor" asp-action="Index">Doctor</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Patient" asp-action="Index">Patient</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Appointment" asp-action="Index">Appointment</a>
+                                </li>
+                            </ul>
+                        </div>                      
                     </ul>
+                    <partial name="_LoginPartial" />
                 </div>
+           
             </div>
         </nav>
+
     </header>
     <div class="container text-center"> 
         <main role="main" class="pb-3">
@@ -61,12 +61,14 @@
 
     <footer class="border-top footer text-center expand-xs bg-primary">
         <div class="container">
-            &copy; 2024 - <i class="bi bi-stars">MediCare</i><i class="bi bi-stars"></i>Made by DevTeam - <a style="color:beige" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - <i class="bi bi-stars" style="color: beige">MediCare</i><i class="bi bi-stars" style="color: beige"></i>Made by DevTeam - <a style="color:beige" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.tiny.cloud/1/o9m4xdo101tb0wuvypo4p9xj7dxmv1remgyc6ubn0s2d341u/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

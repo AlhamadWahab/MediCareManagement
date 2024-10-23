@@ -1,7 +1,8 @@
 ﻿@model BusinessLogicLayer.DTOs.DoctorDto.DoctorDTO
 
 <div class="row">
-    <form method="post" asp-action="Create">
+    <form method="post" asp-action="Create" enctype="multipart/form-data">
+        <input asp-for="Id" hidden />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="border p-3 mt-4">
             <div>
@@ -40,6 +41,11 @@
             <label asp-for="MedicalLicenseNumber">Doctor Medical License Number</label>
             <input type="text" asp-for="MedicalLicenseNumber" class="form-control" />
             <span asp-validation-for="MedicalLicenseNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3 text-start">
+            <label asp-for="ProfilePicture">Doctor Profile Picture</label>
+            <input type="file" name="file" class="form-control" />
+          @*   <span asp-validation-for="ProfilePicture" class="text-danger"></span> *@
         </div>
         <button type="submit" class="btn btn-primary form-control">Create</button>
         <a asp-controller="Doctor" asp-action="Index" class="btn btn-outline-secondary form-control">Back</a>

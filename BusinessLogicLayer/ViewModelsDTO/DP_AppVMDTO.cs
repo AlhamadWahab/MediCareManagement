@@ -8,6 +8,7 @@ namespace BusinessLogicLayer.ViewModelsDTO
 {
     public class DP_AppVMDTO
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
         [StringLength(200)]
         [Display(Name = "Reason of the visit")]
         public string? Reason { get; set; } 

@@ -5,6 +5,7 @@ using DomainLayer.Interfaces.Bases_;
 using InfrastructureLayer.Data;
 using InfrastructureLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 #region MediCare DbContext registeration:
-string? mediCareConnection = builder.Configuration.GetConnectionString("MediCare_db");
+string? mediCareConnection = builder.Configuration.GetConnectionString("MediCareDbContextConnection");
 builder.Services.AddDbContext<MediCareDbContext>(op => op.UseInMemoryDatabase(mediCareConnection ?? ""));
+//builder.Services.AddDbContext<MediCareDbContext>(op => op.UseNpgsql(mediCareConnection ?? ""));
+
+builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<MediCareDbContext>();
 #endregion
 
 #region MediCare Services registeration:
@@ -49,6 +53,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapRazorPages(); /// with this addition the program will read Register and Login Pages.
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -27,6 +27,7 @@ namespace DomainLayer.Entities.Doctor_Model
         public string? Email { get; set; }
         [StringLength(60)]
         public string? MedicalLicenseNumber { get; set; }
+        public string? ProfilePicture { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
             = new List<Appointment>();
     }

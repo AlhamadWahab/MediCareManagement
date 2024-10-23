@@ -7,11 +7,10 @@ namespace BusinessLogicLayer.DTOs.AppointmentDto
 {
     public class AppointmentDTO
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
-
+        public Guid Id { get; set; }
         [StringLength(200)]
         [Display(Name = "Reason of the visit")]
-        [RegularExpression("^[a-zA-Z]+$+' '", ErrorMessage = "The Name field should only contain alphabetic characters.")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "The Name field should only contain alphabetic characters.")]
         public string? Reason { get; set; }
         [Required]
         public bool IsFirstVisit { get; set; }

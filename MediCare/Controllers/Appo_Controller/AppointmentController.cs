@@ -38,7 +38,7 @@ namespace MediCare.Controllers.Appo_Controller
         }
 
         // GET: PatientController/Details/5
-        public async Task<IActionResult> Details(Guid id)
+        public async Task<IActionResult> GetSpecialTerminById(Guid id)
         {
             Appointment appointment = await _repository.AppointmentService.GetByIdAsync(id);
             AppointmentDTO appointmentDTO = _mapper.Map<AppointmentDTO>(appointment);
@@ -47,6 +47,43 @@ namespace MediCare.Controllers.Appo_Controller
                 return NotFound();
             }
             return View(appointmentDTO);
+        }
+
+
+        public async Task<IActionResult> GetTermineByDoctorId(Guid doctorId)
+        {
+            IEnumerable<Appointment> appointments = await _repository.AppointmentService.GetAllAsync();
+            IEnumerable<AppointmentDTO> appointmentDTOs = _mapper.Map<IEnumerable<AppointmentDTO>>(appointments);
+            if (appointmentDTOs == null || !appointmentDTOs.Any())
+            {
+                return NotFound();
+            }
+
+            var filteredAppointments = appointmentDTOs.Where(x => x.DoctorDTO_Id == doctorId);
+            if (!filteredAppointments.Any())
+            {
+                return NotFound();
+            }
+
+            return View(filteredAppointments);
+        }
+
+        public async Task<IActionResult> GetTermineByPatientId(Guid patientId)
+        {
+            IEnumerable<Appointment> appointments = await _repository.AppointmentService.GetAllAsync();
+            IEnumerable<AppointmentDTO> appointmentDTOs = _mapper.Map<IEnumerable<AppointmentDTO>>(appointments);
+            if (appointmentDTOs == null || !appointmentDTOs.Any())
+            {
+                return NotFound();
+            }
+
+            var filteredAppointments = appointmentDTOs.Where(x => x.PatientDTO_Id == patientId);
+            if (!filteredAppointments.Any())
+            {
+                return NotFound();
+            }
+
+            return View(filteredAppointments);
         }
 
         // GET: PatientController/Create
@@ -67,6 +104,7 @@ namespace MediCare.Controllers.Appo_Controller
                     Text = p.Name
                 }).ToList()
             };
+            _repository.CommitAsync();
             return View(dP);
         }
 
@@ -90,6 +128,7 @@ namespace MediCare.Controllers.Appo_Controller
                     Value = p.Id.ToString(),
                     Text = p.Name
                 }).ToList();
+            
                 return View(dP_App);
             }
             try
@@ -113,6 +152,7 @@ namespace MediCare.Controllers.Appo_Controller
                     Reason = dP_App.Reason
                 };
                 await _repository.AppointmentService.AddAsync(appointment);
+                _repository.CommitAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception)
@@ -147,6 +187,7 @@ namespace MediCare.Controllers.Appo_Controller
                     Appointment appointment = _mapper.Map<Appointment>(appointmentDTO);
                     await _repository.AppointmentService.UpdateAsync(id, appointment);
                 }
+                _repository.CommitAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -182,6 +223,7 @@ namespace MediCare.Controllers.Appo_Controller
                         return NotFound();
                     }
                     await _repository.AppointmentService.DeleteByIdAsync(id);
+                    _repository.CommitAsync();
                 }
                 return RedirectToAction(nameof(Index));
             }

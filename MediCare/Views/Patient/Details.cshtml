@@ -1,0 +1,39 @@
+﻿@model BusinessLogicLayer.DTOs.PatientDto.PatientDTO
+
+@{
+    ViewData["Title"] = "Details";
+}
+<h3>Patient Informations:</h3>
+
+<div class="container">
+    <div class="row">
+
+        <div class="border-3 shadow">
+            <dt class="col-sm-2" style="text-align: start; color:cadetblue">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10" style="text-align: start">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2" style="text-align: start; color:cadetblue">
+                @Html.DisplayNameFor(model => model.InsuranceProvider)
+            </dt>
+            <dd class="col-sm-10" style="text-align: start">
+                @Html.DisplayFor(model => model.Diagnoses)
+            </dd>
+            <dt class="col-sm-2" style="text-align: start; color:cadetblue">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd class="col-sm-10" style="text-align: start">
+                @Html.DisplayFor(model => model.Telefon)
+            </dd>
+            <dd class="col-sm-10" style="text-align: start">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        </div>
+    </div>
+</div>
+<div class="m-3">
+    <a class="btn btn-outline-warning" asp-controller="Patient" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+    <a class="btn btn-outline-info" asp-controller="Patient" asp-action="Index">Back to List</a>
+</div>

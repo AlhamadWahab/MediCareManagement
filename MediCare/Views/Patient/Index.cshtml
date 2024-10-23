@@ -15,14 +15,17 @@
     </div>
 
     <div class="row pb-3 mt-5">
-        @foreach(var obj in Model.OrderBy(p => p.PatientDTO_Id))
+        @foreach(var obj in Model)
         {
             <div class="row col-lg-3 col-sm-6 ms-2">
                 <div class="card mb-3" style="width: 18rem;">
                     <div class="card-body"> 
-                        <h4 class="card-title">@obj.Name</h4>
+                        <h4 class="card-title" style="color:maroon">@obj.Name</h4>
                         <h5 class="card-title">@obj.InsuranceProvider</h5>
                         <p class="card-text">@obj.Diagnoses</p>
+                        <a asp-controller="Patient" asp-action="Details" asp-route-id="@obj.Id" class="btn btn-outline-info">Details</a>
+                        <a asp-controller="Patient" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger">Delete</a>
+                        <a asp-controller="Patient" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-warning">Edit</a>
                     </div>
                 </div>
             </div>
