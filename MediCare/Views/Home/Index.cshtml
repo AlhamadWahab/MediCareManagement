@@ -49,7 +49,7 @@
             let tickerWidth = ticker.scrollWidth;
 
             function scrollNews() {
-                let duration = window.innerWidth <= 600 ? 80 : 40;
+                let duration = window.innerWidth <= 600 ? 140 : 80;
                 ticker.style.transform = `translateX(-${tickerWidth}px)`;
                 ticker.style.transition = `transform ${duration}s linear`;
 
@@ -61,11 +61,23 @@
             }
             scrollNews();
         }
+
+        $(document).ready(function () {
+            $('.slick-slider').slick({
+                infinite: true,
+                slidesToShow: 3, /* Anzahl der sichtbaren Bilder */
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                arrows: false, /* Pfeile ausschalten */
+                dots: false,
+            });
+        });
     </script>
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to <span class="LogoTitle">MediCare</span></h1><br />
+    <h1 class="display-4">Welcome to <span class="LogoTitle">MediCare <i class="bi bi-heart-pulse-fill"></i></span></h1><br />
     <div>
         <div class="news-ticker">
             <div class="news-items">
@@ -89,18 +101,78 @@
                 </span>
             </div>
         </div>
-        <div>
-            <img class="home-pic m-2 shadow" src="https://www.uchealthplans.com/sites/uc/files/inline-images/UC_PPO_Site_WYNTK-image-tile-011222.gif" alt="home pic" />
-            @* <img class="home-pic m-2 shadow" src="https://formartecmc.com/wp-content/uploads/2023/04/Paciente-8.jpg" alt="home pic" /> *@
-            @* <img class="home-pic m-2 shadow" src="https://newprimarycare.com/wp-content/uploads/2022/04/Physician-with-her-laptop-open-speaking-with-patient.jpg" alt="alternative pic" /> *@
+        @* Founders Section *@
+        <div class="row" style="display: flex; justify-content: space-between">
+            <div class="col-md-6">
+                <h2>Medi<span style="color: orange">Care</span> <span style="color: maroon">Founders</span></h2>
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="~/images/Founders/Faten.jpg" class="d-block w-100" alt="Faten">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="~/images/Founders/Waleed.jpg" class="d-block w-100" alt="Waleed">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="~/images/Founders/Roaa.jpg" class="d-block w-100" alt="Roaa">
+
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+                <div class="col-md-6">
+                    <h2 class="mt-2">Medi<span style="color: orange">Care</span> <span style="color: maroon">Service Team</span></h2>
+                    <div class="slick-slider shadow" style="background-color: azure;">
+                        <img class="m-2 rounded" src="~/images/Team/Hani.jpg" alt="Hani" />
+                        <img class="m-2 rounded" src="~/images/Team/Bana.jpg" alt="Bana" />
+                        <img class="m-2 rounded" src="~/images/Team/Mamoun.jpg" alt="Mamoun" />
+                        <img class="m-2 rounded" src="~/images/Team/Reem.jpg" alt="Reem" />
+                        <img class="m-2 rounded" src="~/images/Team/Marwan.jpg" alt="Marwan" />
+                        <img class="m-2 rounded" src="~/images/Team/Sara.jpg" alt="Sara" />
+                        <img class="m-2 rounded" src="~/images/Team/Rami.jpg" alt="Rami" />
+                        <img class="m-2 rounded" src="~/images/Team/Team.jpg" alt="Team" />
+                        <img class="m-2 rounded" src="~/images/Team/ZahraS.jpg" alt="Zahra" />
+                    </div>
+                    <br />
+                <h2>Medi<span style="color: orange">Care</span> <span style="color: maroon">Service Rooms</span></h2>
+                <div class="slick-slider shadow" style="background-color: azure;">
+                            <img class="m-2 rounded" src="~/images/Services/ivce.jpg" alt="Marwan" />
+                            <img class="m-2 rounded" src="~/images/Services/ser.jpg" alt="Sara" />
+                            <img class="m-2 rounded" src="~/images/Services/ves.jpg" alt="Rami" />
+                            <img class="m-2 rounded" src="~/images/Services/seri.jpg" alt="Zahra" />
+                    </div>
+                </div>     
         </div>
-        @* Adminstrators Section *@
+        <!-- Optional carousel controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#administratorsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#administratorsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+        @* Managers Section *@
         <section id="team" class="section-padding m-4">
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-header text-center pb5">
-                        <h2>Medi<span style="color: orange">Care</span> <span style="color: maroon">Administators</span></h2>
-                        <p>MediCare Administrators are dedicated professionals committed to ensuring the highest standards of healthcare management. 
+                    <h2>Medi<span style="color: orange">Care</span> <span style="color: maroon">Managers</span></h2>
+                        <p>MediCare Managers are dedicated professionals committed to ensuring the highest standards of healthcare management. 
                             They oversee the daily operations of medical facilities, coordinate patient care, and implement policies to improve service delivery. 
                             Their expertise in healthcare administration ensures that MediCare remains a trusted provider of quality healthcare services, fostering a supportive 
                             environment for both patients and medical staff.</p>
@@ -111,7 +183,7 @@
                 <div class="col-12- col-md-6 col-lg-3  my-2">
                     <div class="card text-center">
                         <div class="card-body bg-body-secondary team">
-                            <img src="https://leman-clinic.ch/wp-content/uploads/2018/11/02.jpg" alt="" class="img-fluid rounded-circle shadow">
+                            <img src="~/images/Doctor/Hiba.jpg" alt="" class="img-fluid rounded-circle shadow">
                             <h3 class="card-title py-2" style="color: maroon">Nicolie</h3>
                             <p class="card-text">a dedicated neurologist with years of experience in nerve health. She is known for her commitment to improving her patients' neurological well-being.</p>
                             <p class="socials">
@@ -127,7 +199,7 @@
                 <div class="col-12- col-md-6 col-lg-3  my-2">
                     <div class="card text-center">
                         <div class="card-body bg-body-secondary team">
-                            <img src="https://img.freepik.com/free-photo/bearded-doctor-glasses_23-2147896187.jpg" alt="" class="img-fluid rounded-circle shadow">
+                            <img src="~/images/Doctor/Rami.jpg" alt="" class="img-fluid rounded-circle shadow">
                             <h3 class="card-title py-2" style="color: maroon">Cai</h3>
                             <p class="card-text">a dedicated ophthalmologist with 30 years of experience in eye health. He is one of the 10 best eye doctors known for his precise approach and overall eye care.</p>
                             <p class="socials">
@@ -159,7 +231,7 @@
                 <div class="col-12- col-md-6 col-lg-3 my-2">
                     <div class="card text-center">
                         <div class="card-body bg-body-secondary team">
-                            <img src="https://img.freepik.com/free-photo/female-doctor-hospital-with-stethoscope_23-2148827774.jpg" alt="" class="img-fluid rounded-circle shadow">
+                        <img src="~/images/Doctor/R.jpg" alt="" class="img-fluid rounded-circle shadow">
                             <h3 class="card-title py-2" style="color: maroon">Sandra</h3>
                             <p class="card-text">a dedicated cardiologist with years of experience in heart health. She is known for her compassionate approach and commitment to improving patient outcomes.</p>
                             <p class="socials">

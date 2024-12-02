@@ -1,0 +1,9 @@
+﻿@model MediCareSecurity_IdentityManagementLayer.Models.RoleFormViewModel
+
+<form method="post" asp-action="CreateRole">
+    <div class="table table-striped m-4">
+        <input asp-for="RoleName" class="form-control" placeholder="role name" />
+        <button type="submit" class="btn btn-outline-warning d-flex justifiy-content-around text-center mt-2">Create New Role</button>
+        </div>
+    <span asp-validation-for="RoleName" class="text-danger"></span>
+</form>

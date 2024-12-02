@@ -1,0 +1,60 @@
+﻿@using MediCareSecurity_IdentityManagementLayer.Models
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+    @{
+        ViewData["Title"] = "MediCare Roles";
+    }
+
+<h1>Medi<span class="text-warning">Care</span> <span style="color:maroon">Roles</span></h1>
+
+
+<table class="table table-striped m-4">
+    <partial name="_CreateRoleForm" model="new RoleFormViewModel()" />
+        <thead>
+        <tr>
+            <th class="text-start bg-primary text-white">
+                Role Name 
+            </th>
+            <th class="text-start bg-primary text-white">
+                Role Id
+            </th>
+        </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var role in Model)
+            {
+                <tr>
+                    <td class="text-start">@role.Name</td>
+                    <td class="text-start">@role.Id</td>
+                </tr>
+            }
+        </tbody>
+    
+    </table>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+@* @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        async function showSweetAlert() {
+          /*   const { value: formValues } = */ await Swal.fire({
+                title: 'Write name of Role',
+                html: `
+                    <input id="swal-input1" class="swal2-input">
+                `,
+                focusConfirm: false,
+                preConfirm: () => {
+                    return [
+                         document.getElementById('swal-input1').value  
+                    ];
+                }
+            });
+
+            // if (formValues) {
+            //     Swal.fire(JSON.stringify(formValues));
+            // }
+        }
+    </script>
+} *@

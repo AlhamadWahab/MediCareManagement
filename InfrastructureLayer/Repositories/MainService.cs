@@ -1,4 +1,5 @@
-﻿using DomainLayer.Interfaces.Bases_;
+﻿using DomainLayer.Entities.Appointment_Model;
+using DomainLayer.Interfaces.Bases_;
 using InfrastructureLayer.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -49,5 +50,33 @@ namespace InfrastructureLayer.Repositories
             await _MediDb.SaveChangesAsync();
             return existingEntity;
         }
+        // Special Method 
+
+        public async Task<Appointment> GetAppointmentWithDetailsAsync(Guid id)
+        {
+            return await _MediDb.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Patient)
+                .FirstOrDefaultAsync(a => a.Id == id);
+        }
+
+        public async Task<IEnumerable<Appointment>> GetAppointmentsDoctorDetailsAsync(Guid doctorId)
+        {
+            return await _MediDb.Appointments
+                .Include(a => a.Doctor)  
+                .Include(a => a.Patient) 
+                .Where(a => a.DoctorId == doctorId) 
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Appointment>> GetAppointmentsPatientsDetailsAsync(Guid patientId)
+        {
+            return await _MediDb.Appointments
+                .Include(a => a.Doctor)  
+                .Include(a => a.Patient) 
+                .Where(a => a.PatientId == patientId) 
+                .ToListAsync();
+        }
+
     }
 }

@@ -1,4 +1,12 @@
-﻿@model IEnumerable<BusinessLogicLayer.DTOs.DoctorDto.DoctorDTO>
+﻿@* @using Microsoft.AspNetCore.Identity *@
+@model IEnumerable<BusinessLogicLayer.DTOs.DoctorDto.DoctorDTO>
+@* @inject UserManager<IdentityUser> UserManager
+
+@{
+    var userId = UserManager.GetUserId(User);
+}
+
+<p>User ID: @userId</p> *@
 
 <div class="container m-auto p-auto">
     <div class="row shadow-sm">
@@ -7,11 +15,13 @@
                 MediCare Doctors
             </h2>
         </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Doctor" asp-action="Create" class="btn btn-secondary bg-body-tertiary shadow-sm">
-                <i class="bi bi-plus-circle"> </i> Add New Doctor Infos
-            </a>
-        </div>
+        @if(User.IsInRole("Admin")){
+            <div class="col-6 text-end">
+                <a asp-controller="Doctor" asp-action="Create" class="btn btn-secondary bg-body-tertiary shadow-sm">
+                    <i class="bi bi-plus-circle"> </i> Add New Doctor Infos
+                </a>
+            </div>
+        }
     </div>
 
     <div class="row pb-3 mt-5">
@@ -19,14 +29,18 @@
         @foreach (var obj in Model.OrderBy(m => m.Id))
         {
             <div class="row col-lg-3 col-sm-6 ms-2">
-                <div class="card mb-3 shadow border-warning-subtle" style="width: 18rem; border-radius: 9px">
-                    <img style="border-radius: 17px;  width: 230px; height: 190px;" src="@obj.ProfilePicture" class="card-img-top mt-2 mb-2" alt="pic come soon.." />
+                <div class="card mb-3 shadow border-warning-subtle border-0 border-bottom border-5" style="width: 18rem; border-radius: 9px">
+                    <img style="border-radius: 17px;  width: auto; height: 220px; " src="@obj.ProfilePicture" class="card-img-top mt-1 mb-1" alt="pic come soon.." />
                     <div class="card-body">
-                        <h4 class="card-title">@obj.Name</h4>
+                        <h4 class="card-title">@obj.FirstName <span>@{ }</span>@obj.LastName</h4>
                         <p class="card-text">@obj.Specialty.</p>
-                        <a asp-controller="Doctor" asp-action="Details" asp-route-id="@obj.Id" class="btn btn-outline-info rounded-5">Details</a>
-                        <a asp-controller="Doctor" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger rounded-5">Delete</a>
-                        <a asp-controller="Doctor" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-warning rounded-5">Edit</a>
+                        <a asp-controller="Doctor" asp-action="Details" asp-route-id="@obj.Id" class="btn btn-outline-info rounded-5"><i class="bi bi-info-circle"></i></a>
+                        @if(User.IsInRole("Admin")){
+                            <a asp-controller="Doctor" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-warning rounded-5"><i class="bi bi-pencil-square"></i></a>
+                            @if (User.IsInRole(UserRole.ManagerRole)){
+                                <a asp-controller="Doctor" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger rounded-5"><i class="bi bi-person-x"></i></a>
+                            }
+                        }
                     </div>
                 </div>
             </div>

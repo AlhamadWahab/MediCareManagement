@@ -8,13 +8,13 @@ namespace DomainLayer.Entities.Appointment_Model
     public class Appointment
     {
         [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
 
         [StringLength(200)]
         [Display(Name = "Reason of the visit")]
         public string? Reason { get; set; }
         [Required]
-        public bool IsFirstVisit { get; set; } 
+        public bool IsFirstVisit { get; set; }
 
         [Required]
         [Display(Name = "Patient Id")]
@@ -25,7 +25,7 @@ namespace DomainLayer.Entities.Appointment_Model
         [Required]
         [Display(Name = "Doctor Id")]
         [ForeignKey("DoctorId")]
-        public Guid DoctorId { get; set; }
+        public Guid DoctorId { get; set; } 
         public Doctor? Doctor { get; set; }
     }
 }

@@ -13,9 +13,14 @@
             </div>
         </div>
         <div class="mb-3 text-start">
-            <label asp-for="Name">Doctor Name</label>
-            <input type="text" asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <label asp-for="FirstName">Doctor First Name</label>
+            <input type="text" asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="mb-3 text-start">
+            <label asp-for="LastName">Doctor Last Name</label>
+            <input type="text" asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
         <div class="mb-3 text-start">
             <label asp-for="Specialty">Doctor Specialty</label>

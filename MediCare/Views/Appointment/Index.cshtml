@@ -14,13 +14,17 @@
         </div>
     </div>
 
-    <table class="table">
+    <table id="tblData" class="table">
         <thead>
             <tr>
                 <th>Is First Visit</th>
                 <th>Reson of Visit</th>
-                <th>Doctor</th>
-                <th>Patient</th>
+                <th>Doctor Id</th>
+                <th>Doctor First Name</th>
+                <th>Doctor Last Name</th>
+                <th>Patient Id</th>
+                <th>Patient First Name</th>
+                <th>Patient Last Name</th>
                 <th>operation</th>
             </tr>
         </thead>
@@ -41,11 +45,15 @@
                             }
                         </td>
                         <td>@(!string.IsNullOrWhiteSpace(appointment.Reason) ? appointment.Reason : "N/A")</td>
-                        <td>@(appointment.Doctor?.Name ?? "No Doctor Assigned")</td>
-                        <td>@(appointment.Patient?.Name ?? "No Patient Assigned")</td>
+                        <td>@(appointment.Doctor?.Id)</td>
+                        <td>@(appointment.Doctor?.FirstName)</td>
+                        <td>@(appointment.Doctor?.LastName ?? "No Doctor Assigned")</td>
+                        <td>@(appointment.Patient?.Id)</td>
+                        <td>@(appointment.Patient?.FirstName)</td>
+                        <td>@(appointment.Patient?.LastName ?? "No Patient Assigned")</td>
                         <td>
-                            <a asp-controller="Appointment" asp-action="Edit" asp-route-id="@appointment.Id" class="btn btn-outline-info">Edit</a>
-                            <a asp-controller="Appointment" asp-action="Delete" asp-route-id="@appointment.Id" class="btn btn-outline-danger">Delete</a>
+                            <a asp-controller="Appointment" asp-action="Edit" asp-route-id="@appointment.Id" class="btn btn-outline-info rounded-5 m-1"><i class="bi bi-pencil-square"></i></a>
+                            <a asp-controller="Appointment" asp-action="Delete" asp-route-id="@appointment.Id" class="btn btn-outline-danger rounded-5 m-1"><i class="bi bi-person-x"></i></a>
                         </td>
 
                     </tr>
@@ -57,6 +65,7 @@
                     <td colspan="4" class="text-center">No appointments found.</td>
                 </tr>
             }
+
         </tbody>
     </table>
 </div>
@@ -65,3 +74,12 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+                            @*
+                                  <form asp-controller="Appointment" asp-action="DeleteConfirmed" asp-route-id="@appointment.Id" method="post" style="display:inline;">
+                                @Html.AntiForgeryToken() <!-- Include anti-forgery token -->
+                                <button type="submit" class="btn btn-outline-danger m-1" onclick="return confirm('Are you sure you want to delete this appointment?');">
+                                    <i class="bi bi-person-x"></i>
+                                </button>
+                            </form>
+                            *@

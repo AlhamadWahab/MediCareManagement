@@ -8,8 +8,11 @@ using DomainLayer.Entities.Doctor_Model;
 using DomainLayer.Entities.Patient_Model;
 using DomainLayer.Interfaces.Bases_;
 using DomainLayer.ViewModels;
+using MediCareSecurity_IdentityManagementLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 
 namespace MediCare.Controllers.Appo_Controller
 {
@@ -18,7 +21,10 @@ namespace MediCare.Controllers.Appo_Controller
         private readonly IRepository _repository = repository;
         private readonly IMapper _mapper = mapper;
 
+
+
         // GET: PatientController
+        [Authorize(Roles = UserRole.ManagerRole + ",Admin")]
         public async Task<IActionResult> Index()
         {
             IEnumerable<Appointment> appointments = await _repository.AppointmentService.GetAllAsync();
@@ -37,56 +43,9 @@ namespace MediCare.Controllers.Appo_Controller
             return View(_AppVMDTOs);
         }
 
-        // GET: PatientController/Details/5
-        public async Task<IActionResult> GetSpecialTerminById(Guid id)
-        {
-            Appointment appointment = await _repository.AppointmentService.GetByIdAsync(id);
-            AppointmentDTO appointmentDTO = _mapper.Map<AppointmentDTO>(appointment);
-            if (appointmentDTO == null)
-            {
-                return NotFound();
-            }
-            return View(appointmentDTO);
-        }
-
-
-        public async Task<IActionResult> GetTermineByDoctorId(Guid doctorId)
-        {
-            IEnumerable<Appointment> appointments = await _repository.AppointmentService.GetAllAsync();
-            IEnumerable<AppointmentDTO> appointmentDTOs = _mapper.Map<IEnumerable<AppointmentDTO>>(appointments);
-            if (appointmentDTOs == null || !appointmentDTOs.Any())
-            {
-                return NotFound();
-            }
-
-            var filteredAppointments = appointmentDTOs.Where(x => x.DoctorDTO_Id == doctorId);
-            if (!filteredAppointments.Any())
-            {
-                return NotFound();
-            }
-
-            return View(filteredAppointments);
-        }
-
-        public async Task<IActionResult> GetTermineByPatientId(Guid patientId)
-        {
-            IEnumerable<Appointment> appointments = await _repository.AppointmentService.GetAllAsync();
-            IEnumerable<AppointmentDTO> appointmentDTOs = _mapper.Map<IEnumerable<AppointmentDTO>>(appointments);
-            if (appointmentDTOs == null || !appointmentDTOs.Any())
-            {
-                return NotFound();
-            }
-
-            var filteredAppointments = appointmentDTOs.Where(x => x.PatientDTO_Id == patientId);
-            if (!filteredAppointments.Any())
-            {
-                return NotFound();
-            }
-
-            return View(filteredAppointments);
-        }
 
         // GET: PatientController/Create
+        [Authorize(Roles = UserRole.ManagerRole + ",Admin")]
         public async Task<IActionResult> Create()
         {
             IEnumerable<Doctor> doctors = await _repository.DoctorService.GetAllAsync();
@@ -96,21 +55,22 @@ namespace MediCare.Controllers.Appo_Controller
                 Doctors = doctors.Select(d => new SelectListItem
                 {
                     Value = d.Id.ToString(),
-                    Text = d.Name
+                    Text = $"{d.FirstName} {d.LastName}"
                 }).ToList(),
                 Patients = patients.Select(p => new SelectListItem
                 {
                     Value = p.Id.ToString(),
-                    Text = p.Name
+                    Text = $"{p.FirstName} {p.LastName}"
                 }).ToList()
             };
-            _repository.CommitAsync();
+            await _repository.CommitAsync();
             return View(dP);
         }
 
         // POST: PatientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = UserRole.ManagerRole + ",Admin")]
         public async Task<IActionResult> Create(DP_AppVMDTO dP_App)
         {
 
@@ -121,14 +81,14 @@ namespace MediCare.Controllers.Appo_Controller
                 dP_App.Doctors = doctors.Select(d => new SelectListItem
                 {
                     Value = d.Id.ToString(),
-                    Text = d.Name
+                    Text = $"{d.FirstName} {d.LastName}"
                 }).ToList();
                 dP_App.Patients = patients.Select(p => new SelectListItem
                 {
                     Value = p.Id.ToString(),
-                    Text = p.Name
+                    Text = $"{p.FirstName} {p.LastName}"
                 }).ToList();
-            
+
                 return View(dP_App);
             }
             try
@@ -152,7 +112,7 @@ namespace MediCare.Controllers.Appo_Controller
                     Reason = dP_App.Reason
                 };
                 await _repository.AppointmentService.AddAsync(appointment);
-                _repository.CommitAsync();
+                await _repository.CommitAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception)
@@ -162,75 +122,192 @@ namespace MediCare.Controllers.Appo_Controller
             }
         }
 
-        // GET: PatientController/Edit/5
-        public async Task<IActionResult> Edit(Guid id)
+        /// <summary>
+        /// Retrieves a specific appointment with details.
+        /// </summary>
+        /// <param name="id">The unique identifier of the appointment.</param>
+        /// <returns>An IActionResult containing the appointment details or a NotFound response.</returns>
+        [HttpGet]
+        [Authorize(Roles = UserRole.ManagerRole)]
+        public async Task<IActionResult> GetSpecialAppointmentById(Guid id)
         {
-            Appointment appointment = await _repository.AppointmentService.GetByIdAsync(id);
+            var appointment = await _repository.AppointmentService.GetAppointmentWithDetailsAsync(id);
+
             if (appointment == null)
             {
                 return NotFound();
             }
-            AppointmentDTO appointmentDTO = _mapper.Map<AppointmentDTO>(appointment);
+            AppointmentDTO dTO = _mapper.Map<AppointmentDTO>(appointment);
 
+            return Ok(dTO);
+        }
+
+        /// <summary>
+        /// Retrieves all appointments for a specific doctor.
+        /// </summary>
+        /// <param name="doctorId">The unique identifier of the doctor.</param>
+        /// <returns>An IActionResult containing a list of appointments or a NotFound response.</returns>
+        [HttpGet]
+        [Authorize(Roles = UserRole.DoctorRole)]
+        public async Task<IActionResult> GetAppointmentsForDoctor()
+        {
+            var doctorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(doctorId))
+            {
+                Unauthorized();
+            }
+                var appointments = await _repository.AppointmentService.GetAppointmentsDoctorDetailsAsync(Guid.Parse(doctorId));
+
+            if (appointments == null || !appointments.Any())
+            {
+                return NotFound();
+            }
+            IEnumerable<AppointmentDTO> dTOs = _mapper.Map<IEnumerable<AppointmentDTO>>(appointments);
+            return View(dTOs);
+        }
+
+
+        /// <summary>
+        /// Retrieves all appointments for a specific patient.
+        /// </summary>
+        /// <param name="patientId">The unique identifier of the patient.</param>
+        /// <returns>An IActionResult containing a list of appointments or a NotFound response.</returns>
+        [HttpGet]
+        [Authorize(Roles = UserRole.PatientRole)]
+        public async Task<IActionResult> GetAppointmentsForPatient()
+        {
+            var patientId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(patientId)) { Unauthorized(); }
+                
+            var appointments = await _repository.AppointmentService.GetAppointmentsPatientsDetailsAsync(Guid.Parse(patientId));
+
+            if (appointments == null || !appointments.Any())
+            {
+                return NotFound();
+            }
+            IEnumerable<AppointmentDTO> dTOs = _mapper.Map<IEnumerable<AppointmentDTO>>(appointments);
+            return View(dTOs);
+        }
+
+
+        // GET: PatientController/Edit/5
+        [Authorize(Roles = UserRole.ManagerRole)]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            Appointment appointment = await _repository.AppointmentService.GetAppointmentWithDetailsAsync(id);
+            AppointmentDTO appointmentDTO = _mapper.Map<AppointmentDTO>(appointment);
+            if (appointmentDTO == null)
+            {
+                return NotFound();
+            }
             return View(appointmentDTO);
         }
 
         // POST: PatientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = UserRole.ManagerRole)]
         public async Task<IActionResult> Edit(Guid id, AppointmentDTO appointmentDTO)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    Appointment appointment = _mapper.Map<Appointment>(appointmentDTO);
-                    await _repository.AppointmentService.UpdateAsync(id, appointment);
+                    Appointment existingAppointment = await _repository.AppointmentService.GetAppointmentWithDetailsAsync(id);
+                    if (existingAppointment == null)
+                    {
+                        return NotFound();
+                    }
+
+                    existingAppointment.Patient.LastName = appointmentDTO.Patient.LastName;
+                    existingAppointment.Patient.FirstName = appointmentDTO.Patient.FirstName;
+                    //existingAppointment.Patient.InsuranceProvider = appointmentDTO.Patient.InsuranceProvider;
+                    existingAppointment.Doctor.FirstName = appointmentDTO.Doctor.FirstName;
+                    existingAppointment.Doctor.LastName = appointmentDTO.Doctor.LastName;
+                    //existingAppointment.Doctor.Specialty = appointmentDTO.Doctor.Specialty;
+                    existingAppointment.IsFirstVisit = appointmentDTO.IsFirstVisit;
+                    existingAppointment.Reason = appointmentDTO.Reason;
+
+                    await _repository.AppointmentService.UpdateAsync(id, existingAppointment);
+                    await _repository.CommitAsync();
+
+                    return RedirectToAction(nameof(Index));
                 }
-                _repository.CommitAsync();
-                return RedirectToAction(nameof(Index));
+
+                return View(appointmentDTO);
             }
             catch (Exception ex)
             {
-                return View(ex.Message);
+                ModelState.AddModelError("", $"An error occurred: {ex.Message}");
+                return View(appointmentDTO);
             }
         }
 
         // GET: PatientController/Delete/5
+        [Authorize(Roles = UserRole.ManagerRole)]
         public async Task<IActionResult> Delete(Guid id)
         {
-            Appointment appointment = await _repository.AppointmentService.GetByIdAsync(id);
+            Appointment appointment = await _repository.AppointmentService.GetAppointmentWithDetailsAsync(id);
             if (appointment == null)
             {
                 return NotFound();
             }
+
             AppointmentDTO appointmentDTO = _mapper.Map<AppointmentDTO>(appointment);
+            await _repository.CommitAsync();
             return View(appointmentDTO);
         }
 
         // POST: PatientController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = UserRole.ManagerRole)]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             try
             {
+                Appointment appointment = await _repository.AppointmentService.GetAppointmentWithDetailsAsync(id);
+                if (appointment == null)
+                {
+                    return NotFound();
+                }
                 if (ModelState.IsValid)
                 {
-                    Appointment appointment = await _repository.AppointmentService.GetByIdAsync(id);
-                    if (appointment == null)
-                    {
-                        return NotFound();
-                    }
                     await _repository.AppointmentService.DeleteByIdAsync(id);
-                    _repository.CommitAsync();
+                    await _repository.CommitAsync();
                 }
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                return View(ex.Message);
+                ModelState.AddModelError("", $"An error occurred while deleting the appointment: {ex.Message}");
+                return View();
             }
         }
+
+
+        #region Api Calls
+        [HttpGet]
+        public async Task<IActionResult> GetAppointments()
+        {
+
+            IEnumerable<Appointment> appointments = await _repository.AppointmentService.GetAllAsync();
+
+            // Ensure that Doctor and Patient are eagerly loaded
+            foreach (var appointment in appointments)
+            {
+                appointment.Doctor = await _repository.DoctorService.GetByIdAsync(appointment.DoctorId);
+                appointment.Patient = await _repository.PatientService.GetByIdAsync(appointment.PatientId);
+            }
+
+            IEnumerable<AppointmentDTO> appointmentDTOs = _mapper.Map<IEnumerable<AppointmentDTO>>(appointments);
+            IEnumerable<DP_AppVM> dP_Apps = _mapper.Map<IEnumerable<DP_AppVM>>(appointmentDTOs);
+            IEnumerable<DP_AppVMDTO> _AppVMDTOs = _mapper.Map<IEnumerable<DP_AppVMDTO>>(dP_Apps);
+
+            return Json(new { data = _AppVMDTOs });
+        }
+
+        #endregion
+
     }
 }

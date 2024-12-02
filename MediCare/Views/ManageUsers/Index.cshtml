@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MediCareSecurity_IdentityManagementLayer.Models.UserFormViewModel>
+
+@{
+    ViewData["Title"] = "MediCare Users";
+}
+
+<h1>Medi<span class="text-warning">Care</span> <span style="color:maroon">Users</span></h1>
+
+
+<table class="table table-striped m-4">
+    <thead>
+        <tr>
+            <th class="text-start bg-primary text-white">
+                Username
+            </th>
+            <th class="text-start bg-primary text-white">
+                Email
+            </th>
+            <th class="text-start bg-primary text-white">
+                User Id
+            </th>
+            <th class="text-start bg-primary text-white">
+                Roles
+            </th>
+            <th class="text-start bg-primary text-white">
+                Actions
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td class="text-start">@user.UserName</td>
+                <td class="text-start">@user.Email</td>
+                <td class="text-start">@user.Id</td>
+                <td class="text-start">@string.Join(", ", user.Roles.ToList())</td>
+                <td><a class="btn btn-outline-warning" asp-controller="ManageUsers" asp-action="ManageSpecificUser" asp-route-userId="@user.Id">Manage</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MediCare Infrastructure Lay
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureLayer", "InfrastructureLayer\InfrastructureLayer.csproj", "{F199D716-0E56-4ADA-A8B5-C6D6E79D9D7C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MediCare Security & Identity Management Layer", "MediCare Security & Identity Management Layer", "{4ABB3CC5-5E3E-4403-AA88-38480E551745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediCareSecurity_IdentityManagementLayer", "MediCareSecurity_IdentityManagementLayer\MediCareSecurity_IdentityManagementLayer.csproj", "{DBF9F260-E5D7-4B32-96A0-66AB8F04CB64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{F199D716-0E56-4ADA-A8B5-C6D6E79D9D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F199D716-0E56-4ADA-A8B5-C6D6E79D9D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F199D716-0E56-4ADA-A8B5-C6D6E79D9D7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBF9F260-E5D7-4B32-96A0-66AB8F04CB64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBF9F260-E5D7-4B32-96A0-66AB8F04CB64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBF9F260-E5D7-4B32-96A0-66AB8F04CB64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBF9F260-E5D7-4B32-96A0-66AB8F04CB64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +55,7 @@ Global
 		{E555DC16-E2E3-49B4-ACBE-B4EB23101CDA} = {BFFB7B0C-C853-4AE4-95A0-10F3653D3BD5}
 		{65917348-D932-4797-B52E-7922DD737A31} = {B744F9A9-8BD5-4723-8C31-12F1D61790F6}
 		{F199D716-0E56-4ADA-A8B5-C6D6E79D9D7C} = {373F8E08-4C11-4AFC-969E-C6F3628210B6}
+		{DBF9F260-E5D7-4B32-96A0-66AB8F04CB64} = {4ABB3CC5-5E3E-4403-AA88-38480E551745}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BE619165-D111-499B-B27D-E39CCC9382A0}

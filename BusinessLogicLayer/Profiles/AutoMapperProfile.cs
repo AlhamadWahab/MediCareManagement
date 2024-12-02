@@ -7,6 +7,7 @@ using DomainLayer.Entities.Appointment_Model;
 using DomainLayer.Entities.Doctor_Model;
 using DomainLayer.Entities.Patient_Model;
 using DomainLayer.ViewModels;
+using MediCareSecurity_IdentityManagementLayer.Models;
 
 namespace BusinessLogicLayer.Profiles
 {
@@ -22,6 +23,7 @@ namespace BusinessLogicLayer.Profiles
             CreateMap<DP_AppVM, AppointmentDTO>().ReverseMap();
             CreateMap<DP_AppVMDTO, AppointmentDTO>().ReverseMap();
             CreateMap<DP_AppVM, Appointment>().ReverseMap();
+            CreateMap<MediCareAppUser, UserFormViewModel>().ReverseMap();
         }
     }
 }

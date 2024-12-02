@@ -10,10 +10,16 @@
 
         <div class="border-3 shadow">
             <dt class="col-sm-2" style="text-align: start; color:cadetblue">
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.FirstName)
             </dt>
             <dd class="col-sm-10" style="text-align: start">
-                @Html.DisplayFor(model => model.Name)
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt class="col-sm-2" style="text-align: start; color:cadetblue">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd class="col-sm-10" style="text-align: start">
+                @Html.DisplayFor(model => model.LastName)
             </dd>
             <dt class="col-sm-2" style="text-align: start; color:cadetblue">
                 @Html.DisplayNameFor(model => model.Specialty)
@@ -31,6 +37,8 @@
     </div>
 </div>
 <div class="m-3">
-    <a class="btn btn-outline-warning" asp-controller="Doctor" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-    <a class="btn btn-outline-info" asp-controller="Doctor" asp-action="Index">Back to List</a>
+    @if(User.IsInRole("Admin")){
+        <a class="btn btn-outline-warning" asp-controller="Doctor" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+    }
+    <a class="btn btn-outline-secondary" asp-controller="Doctor" asp-action="Index">Back to List</a>
 </div>

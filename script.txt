@@ -1,0 +1,3 @@
+INSERT INTO [Security].[Users] ([Id], [FirstName], [LastName], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'9bbf9df5-1c87-45e1-a742-a845ceb2a7f1', N'Hiba', N'Rose', N'Hiba_Rose', N'HIBA_ROSE', N'dev70tec.manager@gmail.com', N'DEV70TEC.MANAGER@GMAIL.COM', 0, N'AQAAAAIAAYagAAAAEO3RYp8sYICp6V89AycyA3TCDUReM+DvcRrFSzDQAOtXY3ZdRQHro9qJLFXlV7lLHw==', N'ZUUZ6SCIES5GPXFR2BL5AAONDBSILD5M', N'6c7d12ef-3b25-4298-8d2a-6bc8af420fb5', N'2230091736425', 0, 0, NULL, 1, 0)
+
+Hasan AlObaid .Wm356V-aLjj8X7

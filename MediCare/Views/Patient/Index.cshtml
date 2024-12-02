@@ -19,13 +19,19 @@
         {
             <div class="row col-lg-3 col-sm-6 ms-2">
                 <div class="card mb-3" style="width: 18rem;">
-                    <div class="card-body"> 
-                        <h4 class="card-title" style="color:maroon">@obj.Name</h4>
+                    <div class="card-body">
+                        <h4 class="card-title" style="color:maroon">@obj.FirstName <span>@{ }</span>@obj.LastName</h4>
                         <h5 class="card-title">@obj.InsuranceProvider</h5>
                         <p class="card-text">@obj.Diagnoses</p>
-                        <a asp-controller="Patient" asp-action="Details" asp-route-id="@obj.Id" class="btn btn-outline-info">Details</a>
-                        <a asp-controller="Patient" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger">Delete</a>
-                        <a asp-controller="Patient" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-warning">Edit</a>
+                        <a asp-controller="Patient" asp-action="Details" asp-route-id="@obj.Id" class="btn btn-outline-info rounded-5"><i class="bi bi-info-circle"></i></a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="Patient" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-warning rounded-5"><i class="bi bi-pencil-square"></i></a>
+                            @if (User.IsInRole(UserRole.ManagerRole))
+                            {
+                                <a asp-controller="Patient" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger rounded-5"><i class="bi bi-person-x"></i></a>
+                            }
+                        }
                     </div>
                 </div>
             </div>

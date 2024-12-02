@@ -14,14 +14,14 @@
                 <input asp-for="Reason" class="form-control" />
             </div>
             <div class="form-group mt-3">
-                <label asp-for="Doctor_Id" class="form-label"></label>
+                <label asp-for="Doctor" class="form-label"></label>
                 <select asp-for="Doctor_Id" class="form-control" asp-items="Model.Doctors">
                     <option value="">-- Select a Doctor --</option>
                 </select>
             </div>
 
             <div class="form-group mt-3">
-                <label asp-for="Patient_Id" class="form-label"></label>
+                <label asp-for="Patient" class="form-label"></label>
                 <select asp-for="Patient_Id" class="form-control" asp-items="Model.Patients">
                     <option value="">-- Select a Patient --</option>
                 </select>

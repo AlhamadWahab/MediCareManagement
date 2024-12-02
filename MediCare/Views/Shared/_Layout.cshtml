@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using MediCareSecurity_IdentityManagementLayer
+@using MediCareSecurity_IdentityManagementLayer.Models
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,6 +12,11 @@
     <link rel="stylesheet" href="~/MediCare.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    @* Display Pics Infinity Links using Slick*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    @* /// SweetAlert2  /// *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body>
     <header>
@@ -27,30 +35,61 @@
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-secondary shadow text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <div class="dropdown shadow text-dark" id="drop">
-                            <a class=" btn btn-outline-secondary text-dark dropdown-toggle border-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Content Management
-                            </a>
+                        @if(User.IsInRole("Admin")){
+                             <li>
+                                <div class="dropdown shadow text-dark" id="drop">
+                            
+                                <a class=" btn btn-outline-secondary text-dark dropdown-toggle border-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Content Management
+                                </a>
 
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Doctor" asp-action="Index">Doctor</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item" style="width:100%">
+                                        <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Doctor" asp-action="Index">Doctor</a>
+                                    </li>
+                                    <li class="nav-item" style="width:100%">
+                                        <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Patient" asp-action="Index">Patient</a>
+                                    </li>
+                                    <li class="nav-item" style="width:100%">
+                                        <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Appointment" asp-action="Index">Appointment</a>
+                                    </li>
+                                        @if (User.IsInRole(UserRole.ManagerRole)){
+                                            <li class="nav-item" style="width:100%">
+                                                <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-controller="ManageRoles" asp-action="Index">Manage Roles</a>
+                                            </li>
+                                            <li class="nav-item" style="width:100%">
+                                                <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-controller="ManageUsers" asp-action="Index">Manage Users</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </li>
+                        }else if(User.IsInRole(UserRole.DoctorRole)){
+                            <li class="nav-item" style="width:100%">
+                                <a class="nav-link btn btn-outline-secondary shadow text-dark text-center" style="padding-left:5px" asp-controller="Appointment" asp-action="GetAppointmentsForDoctor">My Appointments</a>
+                            </li>
+                        }
+                        else if (User.IsInRole(UserRole.PatientRole))
+                        {
+                            <li class="nav-item" style="width:100%">
+                                <a class="nav-link btn btn-outline-secondary shadow text-dark text-center" style="padding-left:5px"  asp-controller="Appointment" asp-action="GetAppointmentsForPatient">My Appointments</a>
+                            </li>
+                        }
+                        else{
+                            @if (User.IsInRole(UserRole.User_Role))
+                            {
+                                <li class="nav-item" style="width:100%">
+                                    <a class="nav-link btn btn-outline-secondary shadow text-dark text-center" style="padding-left:5px" asp-area="" asp-controller="Doctor" asp-action="Index">MediCare Doctors Team</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Patient" asp-action="Index">Patient</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link btn btn-outline-secondary shadow text-dark text-start" style="padding-left:5px" asp-area="" asp-controller="Appointment" asp-action="Index">Appointment</a>
-                                </li>
-                            </ul>
-                        </div>                      
+                            }
+                        }             
                     </ul>
-                    <partial name="_LoginPartial" />
+                    <div class="navbar-nav flex-grow-1">
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
-           
             </div>
         </nav>
-
     </header>
     <div class="container text-center"> 
         <main role="main" class="pb-3">
@@ -58,17 +97,23 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-center expand-xs bg-primary">
         <div class="container">
             &copy; 2024 - <i class="bi bi-stars" style="color: beige">MediCare</i><i class="bi bi-stars" style="color: beige"></i>Made by DevTeam - <a style="color:beige" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @* /// SweetAlert2  /// *@
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @* Display Pics Infinity Links using Slick*@
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/o9m4xdo101tb0wuvypo4p9xj7dxmv1remgyc6ubn0s2d341u/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+   
+
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

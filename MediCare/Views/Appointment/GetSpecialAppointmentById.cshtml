@@ -1,0 +1,30 @@
+﻿@model BusinessLogicLayer.DTOs.AppointmentDto.AppointmentDTO
+
+@{
+    ViewData["Title"] = "Appointment Details";
+}
+
+<div class="container mt-5">
+    <h1>Appointment Details</h1>
+    <div class="card">
+        <div class="card-header">
+            @Model.Id
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Details</h5>
+            <p class="card-text"><strong>Reson for Visit:</strong> @Model.Reason</p>
+            <p class="card-text"><strong>Is Firs Visit:</strong> @Model.IsFirstVisit</p>
+            <p class="card-text"><strong>Doctor:</strong>@(Model.Doctor != null ? $"{Model.Doctor.FirstName} {Model.Doctor.LastName}" : "N/A")</p>
+            <p class="card-text"><strong>Patient:</strong>@(Model.Patient != null ? $"{Model.Patient.FirstName} {Model.Patient.LastName}" : "N/A")</p>
+        </div>
+        <div class="card-footer text-muted">
+            <a href="@Url.Action("Index", "Appointments")" class="btn btn-primary">Back to Appointments</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    </script>
+}

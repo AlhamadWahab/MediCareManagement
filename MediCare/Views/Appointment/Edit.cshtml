@@ -1,66 +1,67 @@
 ﻿@model BusinessLogicLayer.DTOs.AppointmentDto.AppointmentDTO
 
-<div class="container m-auto p-auto">
-    <div class="row shadow-sm">
-        <div class="text-start col-6">
-            <h2 class="text-dark">
-                Edit Appointment Information
-            </h2>
-        </div>
-    </div>
+@{
+    ViewData["Title"] = "Edit Appointment";
+}
 
-    <form asp-controller="Appointment" asp-action="Edit" method="post" class="mt-4" style="text-align: start;">
+<div class="container mt-5">
+    <h1>Edit Appointment</h1>
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
         <div class="form-group">
-            <label asp-for="Doctor" class="form-label"></label>
-            <input asp-for="Doctor" class="form-control" />
-            <span asp-validation-for="Doctor" class="text-danger"></span>
+            <label asp-for="Reason" class="control-label"></label>
+            <input asp-for="Reason" class="form-control" />
+            <span asp-validation-for="Reason" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label asp-for="Patient" class="form-label"></label>
-            <input asp-for="Patient" class="form-control" />
-            <span asp-validation-for="Patient" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="IsFirstVisit" class="form-label"></label>
-            <input asp-for="IsFirstVisit" class="form-check-input" type="checkbox" />
+            <div class="form-check">
+                <input asp-for="IsFirstVisit" class="form-check-input" type="checkbox" />
+                <label asp-for="IsFirstVisit" class="form-check-label"></label>
+            </div>
             <span asp-validation-for="IsFirstVisit" class="text-danger"></span>
         </div>
+
+        <h4>Patient Information</h4>
         <div class="form-group">
-            <label asp-for="Reason" class="form-label"></label>
-            <textarea asp-for="Reason" class="form-control"></textarea>
-          @*   <span asp-validation-for="Reason" class="text-danger"></span> *@
+            <label asp-for="Patient.FirstName" class="control-label"></label>
+            <input asp-for="Patient.FirstName" class="form-control" />
+            <span asp-validation-for="Patient.FirstName" class="text-danger"></span>
         </div>
-        <div class="form-group mt-3">
-            <input type="submit" value="Save" class="btn btn-primary" />
+
+        <div class="form-group">
+            <label asp-for="Patient.LastName" class="control-label"></label>
+            <input asp-for="Patient.LastName" class="form-control" />
+            <span asp-validation-for="Patient.LastName" class="text-danger"></span>
+        </div>
+
+        <h4>Doctor Information</h4>
+        <div class="form-group">
+            <label asp-for="Doctor.FirstName" class="control-label"></label>
+            <input asp-for="Doctor.FirstName" class="form-control" />
+            <span asp-validation-for="Doctor.FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Doctor.LastName" class="control-label"></label>
+            <input asp-for="Doctor.LastName" class="form-control" />
+            <span asp-validation-for="Doctor.LastName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-primary">Save Changes</button>
             <a asp-action="Index" class="btn btn-secondary">Cancel</a>
         </div>
-    </form>
+    }
 </div>
 
-
-@section Scripts{
-    <script>
-        tinymce.init({
-            selector: '#basic-conf',
-            width: 600,
-            height: 300,
-            plugins: [
-                'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
-                'searchreplace', 'wordcount', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media',
-                'table', 'emoticons', 'help'
-            ],
-            toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
-                'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
-                'forecolor backcolor emoticons | help',
-            menu: {
-                favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
-            },
-            menubar: 'favs file edit view insert format tools table help',
-            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
-        });
-    </script>
-    @{
-        <partial name="_ValidationScriptsPartial" />
-    }
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 }

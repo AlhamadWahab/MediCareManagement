@@ -1,57 +1,48 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using MediCareSecurity_IdentityManagementLayer.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<MediCareAppUser> SignInManager
+@inject UserManager<MediCareAppUser> UserManager
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {   
+        <li class="nav-item">
+            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+        </li>
+        <li class="nav-item">
+            <form id="logoutForm" class="d-flex align-items-center" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
+            </form>
+        </li>
+        @if (UserManager.GetUserAsync(User).Result?.ProfilPicture != null)
+        {
+            
+            <li>
+                <img class="navPic rounded-circle me-2" alt="pic" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilPicture))" />
+            </li>
+        }
+        else
+        {
+            <li>
+                <img class="navPic rounded-circle me-2" id="profilePic" alt="profile" src="~/images/anonym.jpg" />
+            </li>
+        }
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>
 
-@* <div className="cotn_principal">
-    <div className="cont_centrar">
-        <div className="cont_login">
-            <div className="cont_info_log_sign_up">
-                <div className="col_md_login">
-                    <div className="cont_ba_opcitiy">
-                        <h2>LOGIN</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <button className="btn_login" onClick={change_to_login}>LOGIN</button>
-                    </div>
-                </div>
-                <div className="col_md_sign_up">
-                    <div className="cont_ba_opcitiy">
-                        <h2>SIGN UP</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <button className="btn_sign_up" onClick={change_to_sign_up}>SIGN UP</button>
-                    </div>
-                </div>
-            </div>
 
-            <div className="cont_back_info">
-                <div className="cont_img_back_grey">
-                    <img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg" alt="" />
-                </div>
-            </div>
+<style>
+    .nav-item:hover {
+        text-decoration: underline;
+    }
 
-            <div className="cont_forms">
-                <div className="cont_img_back_">
-                    <img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg" alt="" />
-                </div>
-
-                <div className="cont_form_login">
-                    <a href="#" onclick="hidden_login_and_sign_up()"><i className="material-icons">&#xE5C4;</i></a>
-                    <h2>LOGIN</h2>
-                    <input type="text" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button className="btn_login" onclick="change_to_login()">LOGIN</button>
-                </div>
-
-                <div className="cont_form_sign_up">
-                    <a href="#" onclick="hidden_login_and_sign_up()"><i className="material-icons">&#xE5C4;</i></a>
-                    <h2>SIGN UP</h2>
-                    <input type="text" placeholder="Email" />
-                    <input type="text" placeholder="User" />
-                    <input type="password" placeholder="Password" />
-                    <input type="password" placeholder="Confirm Password" />
-                    <button className="btn_sign_up" onclick="change_to_sign_up()">SIGN UP</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> *@
+</style>

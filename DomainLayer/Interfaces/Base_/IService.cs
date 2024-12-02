@@ -1,4 +1,6 @@
-﻿namespace DomainLayer.Interfaces.Bases_
+﻿using DomainLayer.Entities.Appointment_Model;
+
+namespace DomainLayer.Interfaces.Bases_
 {
     public interface IService<T> where T : class
     {
@@ -37,5 +39,8 @@
         /// <returns>A task that represents the asynchronous operation. 
         /// The task result contains the deleted entity of type T.</returns>
         public Task<T> DeleteByIdAsync(Guid id);
+        public Task<Appointment> GetAppointmentWithDetailsAsync(Guid id);
+        public Task<IEnumerable<Appointment>> GetAppointmentsDoctorDetailsAsync(Guid doctorId);
+        public Task<IEnumerable<Appointment>> GetAppointmentsPatientsDetailsAsync(Guid patientId);
     }
 }

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BusinessLogicLayer.DTOs.AppointmentDto.AppointmentDTO>
+
+@{
+    ViewData["Title"] = "Appointments for Patient";
+}
+
+<div class="container mt-5">
+    <h1>Appointments for Patient</h1>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-warning" role="alert">
+            No appointments found for this patient.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr class="table-primary">
+                        <th scope="col">Appointment ID</th>
+                        <th scope="col">Reason for Visit</th>
+                        <th scope="col">Is First Visit</th>
+                        @* <th scope="col">Patient ID</th> *@
+                        <th scope="col">Doctor ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var appointment in Model)
+                    {
+                        <tr class="table-light">
+                            <td>@appointment.Id</td>
+                            <td>@appointment.Reason</td>
+                            <td>@(appointment.IsFirstVisit ? "Yes" : "No")</td>
+                            @* <td>@(appointment.Patient != null ? $"{appointment.Patient.FirstName} {appointment.Patient.LastName}" : "N/A")</td> *@
+                            <td>@(appointment.Doctor != null ? $"{appointment.Doctor.FirstName} {appointment.Doctor.LastName}" : "N/A")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Back to StartSite</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

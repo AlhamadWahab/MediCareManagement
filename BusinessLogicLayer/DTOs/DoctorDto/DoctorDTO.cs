@@ -1,24 +1,28 @@
 ﻿using BusinessLogicLayer.DTOs.AppointmentDto;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace BusinessLogicLayer.DTOs.DoctorDto
 {
     public class DoctorDTO
     {
+        [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
-        [Required]
-        [MaxLength(50)]
-        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "The Name field should only contain alphabetic characters.")]
-        public string? Name { get; set; }
-        [Required]
+
+        [Required, MaxLength(100)]
+        public string FirstName { get; set; }
+
+        [Required, MaxLength(100)]
+        public string LastName { get; set; }
+  
         [StringLength(100)]
         public string? Specialty { get; set; }
 
-        [Required]
         [MaxLength(100)]
         public string? PraxisAdress { get; set; }
-        [Required]
+
         [Phone]
+        [RegularExpression(@"^\+?[1-9]\d{1,14}$", ErrorMessage = "Please enter a valid phone number.")]
         public string? Telefon { get; set; }
 
         [EmailAddress]
@@ -26,6 +30,7 @@ namespace BusinessLogicLayer.DTOs.DoctorDto
         [StringLength(60)]
         public string? MedicalLicenseNumber { get; set; }
         public string? ProfilePicture { get; set; }
+        [JsonIgnore]
         public ICollection<AppointmentDTO>? Appointments { get; set; }
     }
 }

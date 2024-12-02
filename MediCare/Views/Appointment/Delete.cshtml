@@ -1,0 +1,26 @@
+﻿@model BusinessLogicLayer.DTOs.AppointmentDto.AppointmentDTO
+
+@{
+    ViewData["Title"] = "Delete Appointment";
+}
+
+<div class="container mt-5">
+    <h1>Delete Appointment</h1>
+
+    <h4>Are you sure you want to delete this appointment?</h4>
+    <div>
+        <h5>Appointment Details:</h5>
+        <p><strong>Patient Name:</strong> @Model.Patient.FirstName @Model.Patient.LastName</p>
+        <p><strong>Doctor Name:</strong> @Model.Doctor.FirstName @Model.Doctor.LastName</p>
+        <p><strong>Reason:</strong> @Model.Reason</p>
+        <p><strong>Is First Visit:</strong> @(Model.IsFirstVisit ? "Yes" : "No")</p>
+    </div>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
