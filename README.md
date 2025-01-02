@@ -1,4 +1,4 @@
-#MediCare Management
+# MediCare Management
 MediCare Management is a designed for managing Doctors, Patients and thier Appointments.
 
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
@@ -12,7 +12,7 @@ MediCare Management is a designed for managing Doctors, Patients and thier Appoi
 ![ASP.NET MVC](https://img.shields.io/badge/ASP.NET%20MVC-5C2D91.svg?style=for-the-badge&logo=aspnet&logoColor=white)
 
 
-#Technical Features
+# Technical Features
 MVC
 DTOs & AutoMapper
 Identity: Authentication and Authorization
