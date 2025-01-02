@@ -13,9 +13,9 @@ MediCare Management is a designed for managing Doctors, Patients and thier Appoi
 
 
 # Technical Features
-MVC
-DTOs & AutoMapper
-Identity: Authentication and Authorization
-File Upload
-CRUD-Operationen
-Slick Carousel & Toastr.js
+MVC <br/>
+DTOs & AutoMapper <br/>
+Identity: Authentication and Authorization <br/>
+File Upload <br/>
+CRUD-Operationen <br/>
+Slick Carousel & Toastr.js <br/>
