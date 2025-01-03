@@ -22,4 +22,6 @@ Slick Carousel & Toastr.js <br/>
 
 
 # Pictures from the app
-![Home Pic](BilderVonApp/home.png)
+![Home Page](BilderVonApp/home.png)
+![Register Page](BilderVonApp/register.png)
+![Login Page](BilderVonApp/login.png)
