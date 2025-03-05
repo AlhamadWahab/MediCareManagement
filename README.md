@@ -19,9 +19,3 @@ Identity: Authentication and Authorization <br/>
 File Upload <br/>
 CRUD-Operationen <br/>
 Slick Carousel & Toastr.js <br/>
-
-
-# Pictures from the app
-![Home Page](BilderVonApp/home.png)
-![Register Page](BilderVonApp/register.png)
-![Login Page](BilderVonApp/login.png)
